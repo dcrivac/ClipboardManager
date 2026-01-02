@@ -197,12 +197,17 @@ class PersistenceController {
     
     func save() {
         let context = container.viewContext
+        debugLog("💾 save() called. hasChanges: \(context.hasChanges)")
+
         if context.hasChanges {
             do {
                 try context.save()
+                debugLog("✅ Context saved successfully!")
             } catch {
-                print("Failed to save context: \(error)")
+                debugLog("❌ Save ERROR: \(error)")
             }
+        } else {
+            debugLog("⚠️ No changes to save")
         }
     }
 }
@@ -625,7 +630,8 @@ class SemanticEngine {
         }
 
         // Generate new embedding
-        guard let text = item.displayContent, !text.isEmpty else { return nil }
+        let text = item.displayContent
+        guard !text.isEmpty else { return nil }
         guard let embedding = generateEmbedding(for: text) else { return nil }
 
         setCachedEmbedding(embedding, for: item.id)
@@ -653,7 +659,8 @@ class SemanticEngine {
 
     // Process item and store embedding in Core Data
     func processAndStoreEmbedding(for item: ClipboardItemEntity, context: NSManagedObjectContext) {
-        guard let text = item.displayContent, !text.isEmpty else { return }
+        let text = item.displayContent
+        guard !text.isEmpty else { return }
         guard let embedding = generateEmbedding(for: text) else { return }
         guard let embeddingData = embeddingToData(embedding) else { return }
 
@@ -789,7 +796,7 @@ class EmbeddingProcessor {
                     var score = 0.0
 
                     // Recency score (0.0-0.4)
-                    let daysSinceCreated = Calendar.current.dateComponents([.day], from: item.timestamp ?? Date(), to: Date()).day ?? 0
+                    let daysSinceCreated = Calendar.current.dateComponents([.day], from: item.timestamp, to: Date()).day ?? 0
                     let recencyScore = max(0, 0.4 - Double(daysSinceCreated) * 0.02)
 
                     // App match score (0.0-0.3)
@@ -869,13 +876,13 @@ class ContextDetector {
         var windows: [[ClipboardItemEntity]] = []
 
         // Sort by timestamp
-        let sortedItems = items.sorted { ($0.timestamp ?? Date.distantPast) < ($1.timestamp ?? Date.distantPast) }
+        let sortedItems = items.sorted { $0.timestamp < $1.timestamp }
 
         var currentWindow: [ClipboardItemEntity] = []
         var windowStart: Date?
 
         for item in sortedItems {
-            guard let timestamp = item.timestamp else { continue }
+            let timestamp = item.timestamp
 
             if let start = windowStart {
                 let minutesDiff = Calendar.current.dateComponents([.minute], from: start, to: timestamp).minute ?? 0
@@ -1011,17 +1018,16 @@ class ContextDetector {
             }
 
             // Check time proximity (within last hour)
-            if let itemTime = item.timestamp {
-                let recentItems = group.filter { otherItem in
-                    guard let otherTime = otherItem.timestamp else { return false }
-                    let minutes = Calendar.current.dateComponents([.minute], from: otherTime, to: itemTime).minute ?? Int.max
-                    return abs(minutes) <= 60
-                }
+            let itemTime = item.timestamp
+            let recentItems = group.filter { otherItem in
+                let otherTime = otherItem.timestamp
+                let minutes = Calendar.current.dateComponents([.minute], from: otherTime, to: itemTime).minute ?? Int.max
+                return abs(minutes) <= 60
+            }
 
-                if !recentItems.isEmpty {
-                    score += 0.3
-                    matchCount += 1
-                }
+            if !recentItems.isEmpty {
+                score += 0.3
+                matchCount += 1
             }
 
             // Only suggest if at least 2 criteria match
@@ -1046,11 +1052,10 @@ class ContextDetector {
             var score = 0.0
 
             // Recency (40%)
-            if let timestamp = item.timestamp {
-                let hoursSince = Calendar.current.dateComponents([.hour], from: timestamp, to: Date()).hour ?? 0
-                let recencyScore = max(0, 0.4 - Double(hoursSince) * 0.02)
-                score += recencyScore
-            }
+            let timestamp = item.timestamp
+            let hoursSince = Calendar.current.dateComponents([.hour], from: timestamp, to: Date()).hour ?? 0
+            let recencyScore = max(0, 0.4 - Double(hoursSince) * 0.02)
+            score += recencyScore
 
             // App match (30%)
             if item.sourceApp == currentApp {
@@ -1266,11 +1271,10 @@ class SmartSearchEngine {
             var finalScore = result.score
 
             // Recency score (20%)
-            if let timestamp = result.item.timestamp {
-                let daysSince = Calendar.current.dateComponents([.day], from: timestamp, to: Date()).day ?? 0
-                let recencyScore = max(0, 0.2 * (1.0 / (1.0 + Double(daysSince))))
-                finalScore += recencyScore
-            }
+            let timestamp = result.item.timestamp
+            let daysSince = Calendar.current.dateComponents([.day], from: timestamp, to: Date()).day ?? 0
+            let recencyScore = max(0, 0.2 * (1.0 / (1.0 + Double(daysSince))))
+            finalScore += recencyScore
 
             // Frequency score (10%)
             let frequencyScore = min(0.1, Double(result.item.accessCount) / 100.0)
@@ -1296,8 +1300,25 @@ class SmartSearchEngine {
         }
 
         // Generate on-the-fly
-        guard let text = item.displayContent, !text.isEmpty else { return nil }
+        let text = item.displayContent
+        guard !text.isEmpty else { return nil }
         return semanticEngine.generateEmbedding(for: text)
+    }
+}
+
+// MARK: - Debug Helper
+func debugLog(_ message: String) {
+    NSLog(message)
+    let msg = "[\(Date())] \(message)\n"
+    if let data = msg.data(using: .utf8) {
+        let url = URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt")
+        if let handle = try? FileHandle(forWritingTo: url) {
+            handle.seekToEndOfFile()
+            handle.write(data)
+            try? handle.close()
+        } else {
+            try? data.write(to: url)
+        }
     }
 }
 
@@ -1314,19 +1335,39 @@ class ClipboardMonitor: ObservableObject {
     }
     
     func startMonitoring() {
-        lastChangeCount = pasteboard.changeCount
-        print("📋 Clipboard monitoring started. Initial change count: \(lastChangeCount)")
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-            self?.checkClipboard()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+
+            self.lastChangeCount = self.pasteboard.changeCount
+            NSLog("📋 Clipboard monitoring started. Initial change count: \(self.lastChangeCount)")
+
+            // Write debug file to confirm function is called
+            let debugMsg = "\n=== Monitoring started at \(Date()) ===\n"
+            if let data = debugMsg.data(using: .utf8) {
+                if FileManager.default.fileExists(atPath: "/tmp/clipboard_monitor_debug.txt") {
+                    if let handle = FileHandle(forWritingAtPath: "/tmp/clipboard_monitor_debug.txt") {
+                        handle.seekToEndOfFile()
+                        handle.write(data)
+                        handle.closeFile()
+                    }
+                } else {
+                    try? data.write(to: URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt"))
+                }
+            }
+
+            // Create timer on main thread
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+                self?.checkClipboard()
+            }
+
+            // Ensure timer runs in common modes
+            if let timer = self.timer {
+                RunLoop.main.add(timer, forMode: .common)
+            }
+
+            NSLog("✅ Timer created and scheduled")
+            self.cleanupOldItems()
         }
-        
-        // Ensure timer is added to the run loop
-        if let timer = timer {
-            RunLoop.main.add(timer, forMode: .common)
-        }
-        
-        cleanupOldItems()
     }
     
     func stopMonitoring() {
@@ -1336,38 +1377,41 @@ class ClipboardMonitor: ObservableObject {
     
     private func checkClipboard() {
         let currentChangeCount = pasteboard.changeCount
-        
+
         if currentChangeCount != lastChangeCount {
-            print("📋 Clipboard changed! Count: \(lastChangeCount) → \(currentChangeCount)")
+            NSLog("📋 Clipboard changed! Count: \(lastChangeCount) → \(currentChangeCount)")
+            try? "Clipboard changed at \(Date())".write(toFile: "/tmp/clipboard_monitor_debug.txt", atomically: false, encoding: .utf8)
             lastChangeCount = currentChangeCount
-            
+
             if let frontmostApp = NSWorkspace.shared.frontmostApplication?.localizedName {
-                print("📱 Current app: \(frontmostApp)")
+                NSLog("📱 Current app: \(frontmostApp)")
                 if settings.excludedApps.contains(frontmostApp) {
-                    print("⏭️ Skipping - app is excluded")
+                    NSLog("⏭️ Skipping - app is excluded")
                     return
                 }
             }
-            
+
             captureClipboardContent()
         }
     }
     
     private func captureClipboardContent() {
         let types = pasteboard.types ?? []
-        print("📋 Available pasteboard types: \(types)")
-        
+        NSLog("📋 Available pasteboard types: \(types)")
+        try? "captureClipboardContent called\n".data(using: .utf8)?.write(to: URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt"), options: .atomic)
+
         var content = ""
         var itemType: Int16 = 0
         var category: Int16 = 0
         var imageData: Data?
         var image: NSImage?
-        
+
         if types.contains(.string), let text = pasteboard.string(forType: .string) {
             content = text
             itemType = 0
             category = Int16(categorizeText(text).rawValue)
-            print("✅ Captured text: \(content.prefix(50))...")
+            NSLog("✅ Captured text: \(content.prefix(50))...")
+            try? "Captured text: \(content.prefix(50))\n".data(using: .utf8)?.write(to: URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt"), options: .atomic)
         } else if types.contains(.png) || types.contains(.tiff),
                 let img = NSImage(pasteboard: pasteboard),
                 let tiffData = img.tiffRepresentation,
@@ -1378,25 +1422,29 @@ class ClipboardMonitor: ObservableObject {
             category = Int16(ClipboardCategory.image.rawValue)
             imageData = pngData
             image = img
-            print("✅ Captured image")
+            NSLog("✅ Captured image")
         } else if types.contains(.URL), let url = pasteboard.string(forType: .URL) {
             content = url
             itemType = 2
             category = Int16(ClipboardCategory.link.rawValue)
-            print("✅ Captured URL: \(content)")
+            NSLog("✅ Captured URL: \(content)")
         } else {
-            print("⚠️ No supported content type found")
+            NSLog("⚠️ No supported content type found")
         }
         
         if !content.isEmpty {
+            NSLog("Content not empty, checking for duplicates...")
+            try? "Content not empty: \(content.prefix(30))\n".data(using: .utf8)?.write(to: URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt"), options: .atomic)
+
             let fetchRequest: NSFetchRequest<ClipboardItemEntity> = ClipboardItemEntity.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "content == %@", content)
             fetchRequest.fetchLimit = 1
-            
+
             do {
                 let existingItems = try context.fetch(fetchRequest)
                 if existingItems.isEmpty {
-                    print("💾 Saving new clipboard item...")
+                    NSLog("💾 Saving new clipboard item...")
+                    try? "Saving new item...\n".data(using: .utf8)?.write(to: URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt"), options: .atomic)
                     
                     let item = ClipboardItemEntity(context: context)
                     item.id = UUID()
@@ -1404,7 +1452,10 @@ class ClipboardMonitor: ObservableObject {
                     item.type = itemType
                     item.category = category
                     item.imageData = imageData
-                    
+                    item.isFavorite = false
+                    item.accessCount = 0
+                    item.contextScore = 0.5
+
                     if settings.enableEncryption {
                         item.encryptedContent = EncryptionHelper.encrypt(content)
                         item.isEncrypted = true
@@ -1431,7 +1482,9 @@ class ClipboardMonitor: ObservableObject {
                         }
                     }
                     
+                    debugLog("💾 Calling save()...")
                     PersistenceController.shared.save()
+                    debugLog("✅ After save() call")
 
                     // Process embeddings in background if semantic search enabled
                     if settings.enableSemanticSearch {
@@ -1439,13 +1492,16 @@ class ClipboardMonitor: ObservableObject {
                     }
 
                     enforceItemLimit()
-                    print("✅ Clipboard item saved successfully")
+                    NSLog("✅ Clipboard item saved successfully")
                 } else {
-                    print("⏭️ Duplicate content - skipping")
+                    NSLog("⏭️ Duplicate content - skipping")
                 }
             } catch {
-                print("❌ Failed to check duplicates: \(error.localizedDescription)")
+                NSLog("❌ Failed to check duplicates: \(error.localizedDescription)")
+                try? "ERROR: \(error.localizedDescription)\n".data(using: .utf8)?.write(to: URL(fileURLWithPath: "/tmp/clipboard_monitor_debug.txt"), options: .atomic)
             }
+        } else {
+            NSLog("⚠️ Content is empty, not saving")
         }
     }
     
@@ -1487,7 +1543,10 @@ class ClipboardMonitor: ObservableObject {
     }
     
     private func cleanupOldItems() {
-        let cutoffDate = Calendar.current.date(byAdding: .day, value: -settings.retentionDays, to: Date())!
+        guard let cutoffDate = Calendar.current.date(byAdding: .day, value: -settings.retentionDays, to: Date()) else {
+            print("⚠️ Failed to calculate cutoff date for cleanup")
+            return
+        }
         let fetchRequest: NSFetchRequest<ClipboardItemEntity> = ClipboardItemEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "timestamp < %@", cutoffDate as NSDate)
         
@@ -1656,38 +1715,52 @@ struct ContentView: View {
 
                 // Search mode picker (only show when semantic search enabled and searching)
                 if settings.enableSemanticSearch && !searchText.isEmpty {
-                    Picker("Search Mode", selection: $searchMode) {
-                        Text("Smart").tag(SearchMode.hybrid)
-                        Text("Keyword").tag(SearchMode.keyword)
-                        Text("Semantic").tag(SearchMode.semantic)
+                    HStack(spacing: 8) {
+                        Image(systemName: searchMode == .semantic ? "brain" : searchMode == .keyword ? "text.magnifyingglass" : "sparkles")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+
+                        Picker("Search Mode", selection: $searchMode) {
+                            Text("Smart").tag(SearchMode.hybrid)
+                            Text("Keyword").tag(SearchMode.keyword)
+                            Text("Semantic").tag(SearchMode.semantic)
+                        }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
                     .padding(.horizontal)
+                    .padding(.vertical, 4)
                 }
 
                 // Project tags (if any exist)
                 if !availableTags.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 6) {
-                            Text("Tags:")
-                                .font(.caption)
+                        HStack(spacing: 8) {
+                            Image(systemName: "tag.fill")
+                                .font(.caption2)
                                 .foregroundColor(.secondary)
 
                             ForEach(availableTags, id: \.self) { tag in
                                 Button(action: {
-                                    selectedTag = selectedTag == tag ? nil : tag
+                                    withAnimation(.spring(response: 0.3)) {
+                                        selectedTag = selectedTag == tag ? nil : tag
+                                    }
                                 }) {
                                     HStack(spacing: 4) {
-                                        Image(systemName: "tag.fill")
-                                            .font(.caption2)
                                         Text(tag)
                                             .font(.caption)
+                                            .fontWeight(.medium)
+                                        if selectedTag == tag {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .font(.caption2)
+                                        }
                                     }
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(selectedTag == tag ? Color.blue : Color.gray.opacity(0.2))
-                                    .foregroundColor(selectedTag == tag ? .white : .primary)
-                                    .cornerRadius(12)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        Capsule()
+                                            .fill(selectedTag == tag ? tagColor(for: tag) : tagColor(for: tag).opacity(0.15))
+                                    )
+                                    .foregroundColor(selectedTag == tag ? .white : tagColor(for: tag))
                                 }
                                 .buttonStyle(.plain)
                             }
@@ -1739,10 +1812,42 @@ struct ContentView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
+                // Results count header
+                HStack {
+                    Text("\(filteredItems.count) item\(filteredItems.count == 1 ? "" : "s")")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    if !searchText.isEmpty {
+                        Text("•")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        HStack(spacing: 3) {
+                            Image(systemName: searchMode == .semantic ? "brain" : searchMode == .keyword ? "text.magnifyingglass" : "sparkles")
+                                .font(.caption2)
+                            Text(searchMode == .hybrid ? "Smart Search" : searchMode == .semantic ? "Semantic" : "Keyword")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(Color(NSColor.controlBackgroundColor))
+
+                Divider()
+
                 ScrollView {
-                    LazyVStack(spacing: 1) {
-                        ForEach(filteredItems, id: \.id) { item in
+                    LazyVStack(spacing: 2) {
+                        ForEach(Array(filteredItems.enumerated()), id: \.element.id) { index, item in
                             ClipboardItemRow(item: item, settings: settings)
+                                .transition(.asymmetric(
+                                    insertion: .opacity.combined(with: .move(edge: .top)),
+                                    removal: .opacity
+                                ))
+                                .animation(.easeInOut(duration: 0.2).delay(Double(index) * 0.02), value: filteredItems.count)
                                 .contextMenu {
                                     Button("Copy") {
                                         copyToClipboard(item, smart: false)
@@ -1908,6 +2013,12 @@ struct ContentView: View {
         item.projectTag = nil
         PersistenceController.shared.save()
         print("✅ Removed tag from item \(item.id)")
+    }
+
+    private func tagColor(for tag: String) -> Color {
+        let colors: [Color] = [.blue, .purple, .pink, .orange, .green, .indigo, .teal]
+        let hash = abs(tag.hashValue)
+        return colors[hash % colors.count]
     }
 }
 
@@ -2253,13 +2364,40 @@ struct ClipboardItemRow: View {
     let item: ClipboardItemEntity
     let settings: SettingsManager
     @State private var isHovered = false
-    
+
+    private var contextScorePercent: Int {
+        Int(item.contextScore * 100)
+    }
+
+    private var contextScoreColor: Color {
+        switch item.contextScore {
+        case 0.7...1.0: return .green
+        case 0.4..<0.7: return .orange
+        default: return .gray
+        }
+    }
+
+    private var hasRelatedItems: Bool {
+        item.relatedItemIDs != nil && !item.relatedItemIDs!.isEmpty
+    }
+
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Image(systemName: item.clipboardCategory.icon)
-                .font(.title3)
-                .foregroundColor(item.clipboardCategory.color)
-                .frame(width: 24)
+            // Icon with context score indicator
+            ZStack(alignment: .topTrailing) {
+                Image(systemName: item.clipboardCategory.icon)
+                    .font(.title3)
+                    .foregroundColor(item.clipboardCategory.color)
+                    .frame(width: 24)
+
+                // Context score badge (only if semantic search enabled)
+                if settings.enableSemanticSearch && item.contextScore > 0.3 {
+                    Circle()
+                        .fill(contextScoreColor)
+                        .frame(width: 8, height: 8)
+                        .offset(x: 4, y: -4)
+                }
+            }
             
             VStack(alignment: .leading, spacing: 4) {
                 if let image = item.displayImage {
@@ -2279,13 +2417,41 @@ struct ClipboardItemRow: View {
                     Text(item.displayContent)
                         .lineLimit(3)
                         .font(.system(.body, design: item.clipboardCategory == .code ? .monospaced : .default))
+                        .foregroundColor(.primary)
                 }
-                
+
+                // Project tag (if exists)
+                if let tag = item.projectTag, !tag.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "tag.fill")
+                            .font(.caption2)
+                        Text(tag)
+                            .font(.caption)
+                            .fontWeight(.medium)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(tagColor(for: tag).opacity(0.15))
+                    .foregroundColor(tagColor(for: tag))
+                    .cornerRadius(6)
+                }
+
+                // Metadata row
                 HStack(spacing: 8) {
-                    Text(item.clipboardCategory.displayName)
-                        .font(.caption2)
-                        .foregroundColor(item.clipboardCategory.color)
-                    
+                    // Category badge
+                    HStack(spacing: 3) {
+                        Image(systemName: item.clipboardCategory.icon)
+                            .font(.caption2)
+                        Text(item.clipboardCategory.displayName)
+                            .font(.caption2)
+                            .fontWeight(.medium)
+                    }
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(item.clipboardCategory.color.opacity(0.1))
+                    .foregroundColor(item.clipboardCategory.color)
+                    .cornerRadius(4)
+
                     if let app = item.sourceApp {
                         Text("•")
                             .font(.caption2)
@@ -2294,21 +2460,40 @@ struct ClipboardItemRow: View {
                             .font(.caption2)
                             .foregroundColor(.secondary)
                     }
-                    
+
+                    // Indicators
                     if item.isEncrypted {
                         Image(systemName: "lock.fill")
                             .font(.caption2)
                             .foregroundColor(.green)
+                            .help("Encrypted")
                     }
-                    
+
                     if item.ocrText != nil {
                         Image(systemName: "doc.text.viewfinder")
                             .font(.caption2)
                             .foregroundColor(.blue)
+                            .help("OCR Text Available")
                     }
-                    
+
+                    if hasRelatedItems && settings.enableSemanticSearch {
+                        Image(systemName: "link.circle.fill")
+                            .font(.caption2)
+                            .foregroundColor(.purple)
+                            .help("Has Related Items")
+                    }
+
                     Spacer()
-                    
+
+                    // Context score (on hover)
+                    if isHovered && settings.enableSemanticSearch && item.contextScore > 0 {
+                        Text("\(contextScorePercent)%")
+                            .font(.caption2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(contextScoreColor)
+                            .help("Context Relevance Score")
+                    }
+
                     Text(timeAgo(from: item.timestamp))
                         .font(.caption2)
                         .foregroundColor(.secondary)
@@ -2342,13 +2527,30 @@ struct ClipboardItemRow: View {
             }
         }
         .padding(12)
-        .background(isHovered ? Color.blue.opacity(0.05) : Color.clear)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(isHovered ? Color.blue.opacity(0.08) : Color.clear)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(isHovered ? Color.blue.opacity(0.3) : Color.clear, lineWidth: 1)
+        )
+        .animation(.easeInOut(duration: 0.15), value: isHovered)
         .onHover { hovering in
-            isHovered = hovering
+            withAnimation {
+                isHovered = hovering
+            }
         }
         .onTapGesture {
             copyToClipboard(item, smart: false)
         }
+    }
+
+    // Generate consistent color for tags
+    private func tagColor(for tag: String) -> Color {
+        let colors: [Color] = [.blue, .purple, .pink, .orange, .green, .indigo, .teal]
+        let hash = abs(tag.hashValue)
+        return colors[hash % colors.count]
     }
     
     private func copyToClipboard(_ item: ClipboardItemEntity, smart: Bool) {
