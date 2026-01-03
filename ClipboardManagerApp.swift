@@ -324,6 +324,10 @@ class SettingsManager: ObservableObject {
         didSet { UserDefaults.standard.set(similarityThreshold, forKey: "similarityThreshold") }
     }
 
+    @Published var keepHistoryForever: Bool {
+        didSet { UserDefaults.standard.set(keepHistoryForever, forKey: "keepHistoryForever") }
+    }
+
     init() {
         self.retentionDays = UserDefaults.standard.object(forKey: "retentionDays") as? Int ?? 30
         self.maxItems = UserDefaults.standard.object(forKey: "maxItems") as? Int ?? 100
@@ -338,6 +342,7 @@ class SettingsManager: ObservableObject {
         self.enableAutoProjects = UserDefaults.standard.object(forKey: "enableAutoProjects") as? Bool ?? true
         self.contextWindowMinutes = UserDefaults.standard.object(forKey: "contextWindowMinutes") as? Int ?? 30
         self.similarityThreshold = UserDefaults.standard.object(forKey: "similarityThreshold") as? Double ?? 0.75
+        self.keepHistoryForever = UserDefaults.standard.bool(forKey: "keepHistoryForever")
     }
     
     static let suggestedExclusions = [
@@ -1487,10 +1492,16 @@ class ClipboardMonitor: ObservableObject {
     }
     
     private func cleanupOldItems() {
+        // Skip cleanup if keeping history forever
+        guard !settings.keepHistoryForever else {
+            print("📦 Keep history forever is enabled - skipping age-based cleanup")
+            return
+        }
+
         let cutoffDate = Calendar.current.date(byAdding: .day, value: -settings.retentionDays, to: Date())!
         let fetchRequest: NSFetchRequest<ClipboardItemEntity> = ClipboardItemEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "timestamp < %@", cutoffDate as NSDate)
-        
+
         do {
             let oldItems = try context.fetch(fetchRequest)
             for item in oldItems {
@@ -1972,12 +1983,24 @@ struct SettingsView: View {
                         Text("History Retention")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                        
-                        HStack {
-                            Text("Keep items for:")
-                            Stepper("\(settings.retentionDays) days", value: $settings.retentionDays, in: 1...365)
+
+                        Toggle("Keep history forever", isOn: $settings.keepHistoryForever)
+
+                        if !settings.keepHistoryForever {
+                            HStack {
+                                Text("Keep items for:")
+                                Stepper("\(settings.retentionDays) days", value: $settings.retentionDays, in: 1...365)
+                            }
+
+                            Text("Items older than \(settings.retentionDays) days will be deleted")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text("Clipboard history will be kept indefinitely")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                         }
-                        
+
                         HStack {
                             Text("Maximum items:")
                             Stepper("\(settings.maxItems)", value: $settings.maxItems, in: 50...1000, step: 50)
