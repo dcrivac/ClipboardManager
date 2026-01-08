@@ -37,11 +37,11 @@
         0 results
       </text>
 
-      <!-- ClipboardManager -->
+      <!-- Clipso -->
       <g transform="translate(520, 0)">
         <rect width="480" height="100" rx="12" fill="rgba(255,255,255,0.25)"/>
         <text x="20" y="35" font-family="-apple-system, sans-serif" font-size="18" font-weight="600" fill="white">
-          ClipboardManager
+          Clipso
         </text>
         <text x="20" y="65" font-family="-apple-system, sans-serif" font-size="24" font-weight="700" fill="white">
           Search: "AI"
@@ -72,7 +72,7 @@
   <!-- Footer -->
   <g transform="translate(100, 595)">
     <text x="0" y="0" font-family="-apple-system, sans-serif" font-size="28" font-weight="700" fill="white">
-      ClipboardManager
+      Clipso
     </text>
     <text x="320" y="0" font-family="-apple-system, sans-serif" font-size="22" fill="rgba(255,255,255,0.8)">
       100% Private • Free Forever

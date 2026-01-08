@@ -33,7 +33,7 @@
 
     <!-- Subtitle -->
     <text x="0" y="230" font-family="-apple-system, sans-serif" font-size="24" fill="white" opacity="0.9">
-      How ClipboardManager achieves semantic search with 100% on-device processing
+      How Clipso achieves semantic search with 100% on-device processing
     </text>
 
     <!-- Stats -->
@@ -130,7 +130,7 @@
       Open Source •
     </text>
     <text x="140" y="0" font-family="-apple-system, sans-serif" font-size="20" font-weight="600" fill="white">
-      github.com/dcrivac/ClipboardManager
+      github.com/dcrivac/Clipso
     </text>
   </g>
 </svg>

@@ -36,7 +36,7 @@
     <!-- Apple logo -->
     <path d="M10 8 C10 6 12 4 14 6 C14 4 16 4 16 6 C18 6 18 8 16 10 L14 14 L12 10 C10 8 10 8 10 8" fill="#000" opacity="0.8"/>
     <!-- App name -->
-    <text x="30" y="12" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#000">ClipboardManager</text>
+    <text x="30" y="12" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#000">Clipso</text>
   </g>
   <!-- Menu bar right side -->
   <g transform="translate(1300, 6)">

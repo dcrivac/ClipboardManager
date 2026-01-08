@@ -41,7 +41,7 @@
 
   <!-- Title -->
   <text x="260" y="175" font-family="Inter, -apple-system, sans-serif" font-size="48" font-weight="800" fill="#111827">
-    ClipboardManager
+    Clipso
   </text>
 
   <!-- Subtitle -->
@@ -109,7 +109,7 @@
   <!-- Bottom CTA -->
   <g transform="translate(160, 480)">
     <text x="0" y="0" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="500" fill="#6B7280">
-      github.com/dcrivac/ClipboardManager
+      github.com/dcrivac/Clipso
     </text>
   </g>
 
