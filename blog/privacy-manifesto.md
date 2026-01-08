@@ -83,7 +83,7 @@ let vector = embedding?.vector(for: "machine learning tutorial")
 // Save to Core Data (local SQLite database)
 let encoded = try JSONEncoder().encode(vector)
 item.embedding = encoded
-// Stored in ~/Library/Application Support/ClipboardManager/
+// Stored in ~/Library/Application Support/Clipso/
 ```
 
 **Privacy**: Same as any local file
@@ -151,7 +151,7 @@ But semantic search? Context detection? OCR? **These work perfectly on-device.**
 
 ## The Privacy Architecture
 
-Here's ClipboardManager's complete network architecture:
+Here's Clipso's complete network architecture:
 
 ```swift
 // That's it. There is no network code.
@@ -183,7 +183,7 @@ If you want to report a bug, you open a GitHub issue. That's it.
 
 ### "What about updates?"
 
-App Store (when published) or GitHub releases. Your Mac checks for updates, not ClipboardManager.
+App Store (when published) or GitHub releases. Your Mac checks for updates, not Clipso.
 
 ### "How do you make money?"
 
@@ -270,7 +270,7 @@ I believe the next generation of apps will be:
 - **Privacy-preserving** by design
 - **AI-powered** without cloud dependency
 
-ClipboardManager is just the beginning.
+Clipso is just the beginning.
 
 Imagine:
 - Email clients with local semantic search
@@ -282,8 +282,8 @@ Imagine:
 
 ## Try It Yourself
 
-ClipboardManager is free and open source:
-👉 **[github.com/dcrivac/ClipboardManager](https://github.com/dcrivac/ClipboardManager)**
+Clipso is free and open source:
+👉 **[github.com/dcrivac/Clipso](https://github.com/dcrivac/Clipso)**
 
 You can:
 - ✅ Verify the privacy claims in code
@@ -325,9 +325,9 @@ We just have to choose it.
 - [Local-First Software](https://www.inkandswitch.com/local-first/)
 - [Privacy by Design](https://en.wikipedia.org/wiki/Privacy_by_design)
 
-**ClipboardManager:**
-- [Source Code](https://github.com/dcrivac/ClipboardManager)
-- [Architecture Docs](https://github.com/dcrivac/ClipboardManager#architecture)
+**Clipso:**
+- [Source Code](https://github.com/dcrivac/Clipso)
+- [Architecture Docs](https://github.com/dcrivac/Clipso#architecture)
 - [Technical Deep Dive](blog/technical-deep-dive.md)
 
 ---

@@ -68,7 +68,7 @@
     </g>
   </g>
 
-  <!-- Right Side - Semantic Search (ClipboardManager) -->
+  <!-- Right Side - Semantic Search (Clipso) -->
   <g transform="translate(770, 120)">
     <rect width="580" height="60" rx="8" fill="url(#searchBg)" stroke="#F59E0B" stroke-width="2"/>
     <text x="20" y="40" font-family="-apple-system, sans-serif" font-size="18" fill="#92400E">
@@ -81,7 +81,7 @@
   </g>
 
   <text x="1060" y="230" font-family="-apple-system, sans-serif" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">
-    ClipboardManager with AI
+    Clipso with AI
   </text>
 
   <!-- Right Results -->

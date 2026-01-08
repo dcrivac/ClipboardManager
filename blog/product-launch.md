@@ -1,4 +1,4 @@
-# Introducing ClipboardManager: The First Clipboard for Mac That Actually Thinks
+# Introducing Clipso: The First Clipboard for Mac That Actually Thinks
 
 *After months of development, I'm excited to share a clipboard manager that understands what you mean, not just what you type.*
 
@@ -20,11 +20,11 @@ They're just lists with keyword search. In 2025, when we have AI that can unders
 
 ## What I Built
 
-**ClipboardManager** is a free, open-source clipboard manager for Mac with two key innovations:
+**Clipso** is a free, open-source clipboard manager for Mac with two key innovations:
 
 ### 1. Semantic Search (Finally!)
 
-Instead of matching exact keywords, ClipboardManager understands **meaning**.
+Instead of matching exact keywords, Clipso understands **meaning**.
 
 Search for "coffee recipes" and it finds:
 - "espresso brewing guide"
@@ -42,13 +42,13 @@ You're researching a topic and copy various related snippets:
 - "Neural network architectures"
 - "Deep learning with PyTorch"
 
-Later, you search for "AI tutorials" and ClipboardManager finds all three, even though none contain those exact words. That's semantic search.
+Later, you search for "AI tutorials" and Clipso finds all three, even though none contain those exact words. That's semantic search.
 
 ### 2. Automatic Context Detection
 
 Here's where it gets really cool.
 
-As you work, ClipboardManager detects patterns:
+As you work, Clipso detects patterns:
 - **Which apps** you're copying from
 - **When** you copied things
 - **How** content relates to each other
@@ -64,7 +64,7 @@ I was working on three projects simultaneously:
 2. Fixing API bugs (Xcode + Terminal + Postman)
 3. Writing documentation (Notion + Safari)
 
-ClipboardManager automatically created three project groups, each with a different color tag. When I clicked on an API-related item, it highlighted the other 12 items from that same project.
+Clipso automatically created three project groups, each with a different color tag. When I clicked on an API-related item, it highlighted the other 12 items from that same project.
 
 I didn't create those groups. The app figured it out.
 
@@ -80,7 +80,7 @@ Your clipboard contains sensitive stuff:
 
 Every other "smart" clipboard manager requires cloud sync. Some use third-party AI APIs. That's a privacy nightmare.
 
-ClipboardManager does **100% of processing locally** using Apple's frameworks:
+Clipso does **100% of processing locally** using Apple's frameworks:
 - NLEmbedding for semantic search
 - Vision for OCR
 - Core Data for storage
@@ -95,7 +95,7 @@ You can verify this yourself—the code is fully open source.
 Beyond semantic search and context detection:
 
 ### Built-in OCR
-Copy a screenshot with text? ClipboardManager extracts it automatically, making it searchable.
+Copy a screenshot with text? Clipso extracts it automatically, making it searchable.
 
 ### Smart Categorization
 Automatically detects:
@@ -140,7 +140,7 @@ Other clipboard managers:
 - Copied: $9.99/year
 - Alfred Clipboard: Part of £59 Powerpack
 
-ClipboardManager: **$0, forever.**
+Clipso: **$0, forever.**
 
 Open source because:
 1. **Transparency**: You can verify the privacy claims yourself
@@ -159,7 +159,7 @@ Open source because:
 
 ## Comparison with Alternatives
 
-| Feature | ClipboardManager | Paste | Copied | Maccy |
+| Feature | Clipso | Paste | Copied | Maccy |
 |---------|-----------------|-------|--------|-------|
 | Semantic AI Search | ✅ | ❌ | ❌ | ❌ |
 | Context Detection | ✅ | ❌ | ❌ | ❌ |
@@ -170,7 +170,7 @@ Open source because:
 
 ## Try It Now
 
-👉 **Download: [github.com/dcrivac/ClipboardManager](https://github.com/dcrivac/ClipboardManager/releases)**
+👉 **Download: [github.com/dcrivac/Clipso](https://github.com/dcrivac/Clipso/releases)**
 
 **Requirements:**
 - macOS 13.0 or later
@@ -196,7 +196,7 @@ The roadmap includes:
 
 What features do you want? What's missing? What's broken?
 
-👉 **[Open an issue on GitHub](https://github.com/dcrivac/ClipboardManager/issues)**
+👉 **[Open an issue on GitHub](https://github.com/dcrivac/Clipso/issues)**
 
 ## A Personal Note
 
@@ -229,11 +229,11 @@ Wrong.
 
 We've been settling for keyword search and manual organization when we have the technology to do so much better.
 
-ClipboardManager is my answer to "what if clipboards were actually intelligent?"
+Clipso is my answer to "what if clipboards were actually intelligent?"
 
 I hope it makes your workflow faster, your computer more private, and your life a little easier.
 
-**Download it free:** [github.com/dcrivac/ClipboardManager](https://github.com/dcrivac/ClipboardManager)
+**Download it free:** [github.com/dcrivac/Clipso](https://github.com/dcrivac/Clipso)
 
 ---
 
@@ -247,10 +247,10 @@ I hope it makes your workflow faster, your computer more private, and your life 
 
 ### Resources
 
-- 🌐 [Website](https://dcrivac.github.io/ClipboardManager/)
-- 💻 [GitHub](https://github.com/dcrivac/ClipboardManager)
-- 📖 [Documentation](https://github.com/dcrivac/ClipboardManager#readme)
-- 🐛 [Issues](https://github.com/dcrivac/ClipboardManager/issues)
+- 🌐 [Website](https://dcrivac.github.io/Clipso/)
+- 💻 [GitHub](https://github.com/dcrivac/Clipso)
+- 📖 [Documentation](https://github.com/dcrivac/Clipso#readme)
+- 🐛 [Issues](https://github.com/dcrivac/Clipso/issues)
 - 📺 [Demo Video](https://youtube.com/...)
 
 ---

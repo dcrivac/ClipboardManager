@@ -9,7 +9,7 @@ Your landing page is ready to deploy! All website files have been organized in t
 First, you need to merge the `claude/artwork-marketing-landing-OXgkW` branch to `main`:
 
 **Option A: Via GitHub Web Interface (Recommended)**
-1. Go to: https://github.com/dcrivac/ClipboardManager/compare
+1. Go to: https://github.com/dcrivac/Clipso/compare
 2. Create a Pull Request from `claude/artwork-marketing-landing-OXgkW` to `main`
 3. Review the changes
 4. Click "Merge Pull Request"
@@ -25,7 +25,7 @@ git push origin main
 
 ### Step 2: Enable GitHub Pages
 
-1. Go to your repository: https://github.com/dcrivac/ClipboardManager
+1. Go to your repository: https://github.com/dcrivac/Clipso
 2. Click **"Settings"** (top right)
 3. Scroll down to **"Pages"** in the left sidebar
 4. Under **"Source"**, select:
@@ -36,10 +36,10 @@ git push origin main
 ### Step 3: Wait for Deployment (1-2 minutes)
 
 GitHub will automatically build and deploy your site. You'll see a message:
-> "Your site is ready to be published at https://dcrivac.github.io/ClipboardManager/"
+> "Your site is ready to be published at https://dcrivac.github.io/Clipso/"
 
 After 1-2 minutes, your landing page will be live at:
-**https://dcrivac.github.io/ClipboardManager/**
+**https://dcrivac.github.io/Clipso/**
 
 ---
 
@@ -99,7 +99,7 @@ Your landing page now displays:
 
 Once deployed, check:
 
-1. **Homepage loads**: https://dcrivac.github.io/ClipboardManager/
+1. **Homepage loads**: https://dcrivac.github.io/Clipso/
 2. **Pricing section works**: Scroll to pricing, check all 3 cards
 3. **Images load**: All SVG assets should display
 4. **Navigation works**: Click "Pricing" in nav bar
@@ -166,7 +166,7 @@ If you want to use a custom domain like `clipboardmanager.app`:
 After deployment, you can:
 
 1. **Share the link**
-   - Twitter: "Check out our landing page: https://dcrivac.github.io/ClipboardManager/"
+   - Twitter: "Check out our landing page: https://dcrivac.github.io/Clipso/"
    - Reddit: Post in r/macapps, r/opensource
    - Hacker News: Submit to Show HN
 
@@ -189,7 +189,7 @@ After deployment, you can:
 ## Success Criteria
 
 Your landing page is successfully deployed when:
-- ✅ URL is live: https://dcrivac.github.io/ClipboardManager/
+- ✅ URL is live: https://dcrivac.github.io/Clipso/
 - ✅ Pricing section shows all 3 tiers
 - ✅ All images and graphics load
 - ✅ Mobile responsive (works on phone)

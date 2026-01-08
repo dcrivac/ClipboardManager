@@ -267,11 +267,11 @@ After updates, verify:
 
 ### To Existing Users (if any):
 ```
-Subject: ClipboardManager Update: Introducing Premium
+Subject: Clipso Update: Introducing Premium
 
 Hi early adopters!
 
-Great news: ClipboardManager is getting better with Premium features.
+Great news: Clipso is getting better with Premium features.
 
 What's changing:
 ✅ Free tier remains FREE forever (more generous than alternatives)

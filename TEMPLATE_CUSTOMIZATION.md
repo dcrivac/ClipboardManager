@@ -36,8 +36,8 @@ First, gather all your information in one place:
 - Website: johndoe.dev
 
 **Project URLs:**
-- Landing Page: https://dcrivac.github.io/ClipboardManager/
-- GitHub Repo: https://github.com/dcrivac/ClipboardManager
+- Landing Page: https://dcrivac.github.io/Clipso/
+- GitHub Repo: https://github.com/dcrivac/Clipso
 - Demo Video: https://youtube.com/watch?v=xxxxx
 - Blog: https://johndoe.dev/blog
 
@@ -100,7 +100,7 @@ Hi 9to5Mac team,
 
 I'm a regular reader and loved your recent article on [specific article].
 
-I built ClipboardManager...
+I built Clipso...
 ```
 
 **How to find recent articles:**
@@ -113,7 +113,7 @@ I built ClipboardManager...
 Hi 9to5Mac team,
 
 I loved your article last month about the best Mac productivity tools.
-I built ClipboardManager, which might interest your readers...
+I built Clipso, which might interest your readers...
 ```
 
 ---
@@ -126,7 +126,7 @@ I built ClipboardManager, which might interest your readers...
 
 **BEFORE:**
 ```markdown
-👋 Hey Product Hunt! I'm [Your Name], and I built ClipboardManager.
+👋 Hey Product Hunt! I'm [Your Name], and I built Clipso.
 ...
 Ask me anything! I'll be here all day responding to comments.
 
@@ -141,7 +141,7 @@ Thanks for checking it out! 🚀
 
 **AFTER:**
 ```markdown
-👋 Hey Product Hunt! I'm John Doe, and I built ClipboardManager.
+👋 Hey Product Hunt! I'm John Doe, and I built Clipso.
 ...
 Ask me anything! I'll be here all day responding to comments.
 
@@ -149,8 +149,8 @@ Thanks for checking it out! 🚀
 
 ---
 
-🌐 Website: https://dcrivac.github.io/ClipboardManager/
-💻 GitHub: https://github.com/dcrivac/ClipboardManager
+🌐 Website: https://dcrivac.github.io/Clipso/
+💻 GitHub: https://github.com/dcrivac/Clipso
 📺 Demo: https://youtube.com/watch?v=xxxxx
 ```
 
@@ -161,7 +161,7 @@ Include a brief intro about yourself:
 ```markdown
 👋 Hey Product Hunt! I'm John Doe, a software engineer from San Francisco.
 
-I built ClipboardManager because I was frustrated with...
+I built Clipso because I was frustrated with...
 [rest of template]
 ```
 
@@ -192,7 +192,7 @@ At the end, add:
 John Doe is a software engineer passionate about privacy-first development.
 He previously worked at [Company] and contributes to several open-source projects.
 
-Follow him on [Twitter](@johndoe) for updates on ClipboardManager and other projects.
+Follow him on [Twitter](@johndoe) for updates on Clipso and other projects.
 ```
 
 #### File: `blog/technical-deep-dive.md`
@@ -201,12 +201,12 @@ Follow him on [Twitter](@johndoe) for updates on ClipboardManager and other proj
 
 **BEFORE:**
 ```markdown
-I built ClipboardManager...
+I built Clipso...
 ```
 
 **AFTER:**
 ```markdown
-I'm John Doe, and I built ClipboardManager after years of frustration
+I'm John Doe, and I built Clipso after years of frustration
 with traditional clipboard managers. As a developer who copies hundreds
 of code snippets daily, I needed something smarter.
 ```
@@ -223,12 +223,12 @@ of code snippets daily, I needed something smarter.
 
 **BEFORE:**
 ```html
-<p>&copy; 2025 ClipboardManager. Open Source Project.</p>
+<p>&copy; 2025 Clipso. Open Source Project.</p>
 ```
 
 **AFTER:**
 ```html
-<p>&copy; 2025 ClipboardManager by John Doe. Open Source Project.</p>
+<p>&copy; 2025 Clipso by John Doe. Open Source Project.</p>
 <p><a href="mailto:john@example.com">Contact</a> •
    <a href="https://twitter.com/johndoe">@johndoe</a></p>
 ```
@@ -261,13 +261,13 @@ Before footer, add:
 
 **BEFORE (Scene 2):**
 ```
-Meet ClipboardManager - the first clipboard for Mac with true AI intelligence.
+Meet Clipso - the first clipboard for Mac with true AI intelligence.
 And it's completely free.
 ```
 
 **AFTER:**
 ```
-Hey, I'm John Doe. I built ClipboardManager - the first clipboard for Mac
+Hey, I'm John Doe. I built Clipso - the first clipboard for Mac
 with true AI intelligence. And it's completely free.
 ```
 
@@ -276,10 +276,10 @@ with true AI intelligence. And it's completely free.
 Add your info to the end card:
 
 ```
-ClipboardManager
+Clipso
 By John Doe
 
-Download: github.com/dcrivac/ClipboardManager
+Download: github.com/dcrivac/Clipso
 Follow: @johndoe
 ```
 
@@ -293,13 +293,13 @@ Follow: @johndoe
 
 **BEFORE:**
 ```
-Introducing ClipboardManager: the first clipboard for Mac
+Introducing Clipso: the first clipboard for Mac
 with true AI intelligence 🤖
 ```
 
 **AFTER:**
 ```
-After months of building, I'm launching ClipboardManager! 🚀
+After months of building, I'm launching Clipso! 🚀
 
 As a developer, I copy 100+ things daily. Finding them later was
 a nightmare - until now.
@@ -370,8 +370,8 @@ Create a consistent email signature for outreach:
 ```
 --
 John Doe
-Creator of ClipboardManager
-https://github.com/dcrivac/ClipboardManager
+Creator of Clipso
+https://github.com/dcrivac/Clipso
 @johndoe on Twitter
 ```
 
@@ -382,7 +382,7 @@ Or professional version:
 John Doe
 Software Engineer & Open Source Developer
 john@example.com
-ClipboardManager: https://dcrivac.github.io/ClipboardManager/
+Clipso: https://dcrivac.github.io/Clipso/
 ```
 
 ---
@@ -405,7 +405,7 @@ For easier sharing, create short URLs:
 
 **Example:**
 ```
-Instead of: https://dcrivac.github.io/ClipboardManager/
+Instead of: https://dcrivac.github.io/Clipso/
 Use: clip.ai (if you own domain)
 ```
 
@@ -505,12 +505,12 @@ Repeat for:
 
 **Generic:**
 ```
-I built ClipboardManager because I needed it.
+I built Clipso because I needed it.
 ```
 
 **Personal:**
 ```
-I built ClipboardManager after losing an important API key for the third
+I built Clipso after losing an important API key for the third
 time in a week. As a developer with ADHD, I copy dozens of things and
 completely forget where they went. Sound familiar?
 ```
@@ -537,7 +537,7 @@ I built this because I was tired of losing important code snippets.
 I tried Paste and Copied, but they still used basic keyword search
 and sent my data to the cloud.
 
-So I built ClipboardManager with true semantic AI that runs 100% locally.
+So I built Clipso with true semantic AI that runs 100% locally.
 
 The result: I haven't lost a single clipboard item in 3 months.
 ```
@@ -550,7 +550,7 @@ Hi [Publication],
 
 I loved your piece on [specific article]. You mentioned [point from article].
 
-That's actually what inspired me to solve this problem with ClipboardManager...
+That's actually what inspired me to solve this problem with Clipso...
 ```
 
 **Product Hunt** - share the journey:
@@ -572,7 +572,7 @@ Subject: New open-source Mac app: Clipboard manager with AI semantic search
 
 Hi [Publication] team,
 
-I built ClipboardManager, an open-source clipboard manager for macOS...
+I built Clipso, an open-source clipboard manager for macOS...
 
 Let me know if you'd like more information!
 
@@ -591,7 +591,7 @@ I'm a long-time 9to5Mac reader - loved your recent article on the best
 Mac productivity apps of 2024. You mentioned clipboard managers briefly,
 which is perfect timing.
 
-I just launched ClipboardManager, an open-source clipboard manager that
+I just launched Clipso, an open-source clipboard manager that
 does something none of the ones you covered do: semantic AI search that
 runs 100% locally.
 
@@ -614,8 +614,8 @@ Technical specs:
 - Fully open source for verification
 
 Links:
-- Live demo: https://dcrivac.github.io/ClipboardManager/
-- GitHub: https://github.com/dcrivac/ClipboardManager
+- Live demo: https://dcrivac.github.io/Clipso/
+- GitHub: https://github.com/dcrivac/Clipso
 - Demo video: https://youtube.com/watch?v=xxxxx
 
 I think this would resonate with your readers who care about privacy

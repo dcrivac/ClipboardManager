@@ -295,6 +295,6 @@ if ('IntersectionObserver' in window) {
 
 // Console Easter egg
 console.log('%c👋 Hello Developer!', 'font-size: 20px; font-weight: bold; color: #6366F1;');
-console.log('%cInterested in how ClipboardManager works?', 'font-size: 14px; color: #6B7280;');
-console.log('%cCheck out the source code: https://github.com/dcrivac/ClipboardManager', 'font-size: 14px; color: #6366F1;');
+console.log('%cInterested in how Clipso works?', 'font-size: 14px; color: #6B7280;');
+console.log('%cCheck out the source code: https://github.com/dcrivac/Clipso', 'font-size: 14px; color: #6366F1;');
 console.log('%c✨ Built with Swift, SwiftUI, and Apple\'s on-device ML frameworks', 'font-size: 12px; color: #10B981;');

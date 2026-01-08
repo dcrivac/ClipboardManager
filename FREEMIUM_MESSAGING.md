@@ -19,7 +19,7 @@ How to communicate the free vs premium model across all marketing channels.
 ### Hero Section
 
 ```
-ClipboardManager Pricing
+Clipso Pricing
 Simple, fair pricing. Try all features free.
 
 [Free]                    [Premium - $7.99/year]
@@ -66,7 +66,7 @@ AI features
 ### "Why isn't it completely free?"
 
 **Answer:**
-> ClipboardManager's basic version is 100% free forever—better than most paid alternatives. Premium features like unlimited AI search, automatic context detection, and iCloud sync help support ongoing development while keeping the core experience free for everyone.
+> Clipso's basic version is 100% free forever—better than most paid alternatives. Premium features like unlimited AI search, automatic context detection, and iCloud sync help support ongoing development while keeping the core experience free for everyone.
 
 ### "How is this cheaper than competitors?"
 
@@ -113,7 +113,7 @@ AI features
 > - Open source maintenance
 > - Keeping the free tier generous
 >
-> We're committed to keeping ClipboardManager affordable and privacy-focused.
+> We're committed to keeping Clipso affordable and privacy-focused.
 
 ---
 
@@ -123,7 +123,7 @@ AI features
 
 **Launch Tweet:**
 ```
-Introducing ClipboardManager 🚀
+Introducing Clipso 🚀
 
 The intelligent clipboard for Mac with AI-powered semantic search.
 
@@ -139,7 +139,7 @@ Download: [link]
 
 **Pricing Tweet:**
 ```
-ClipboardManager pricing is simple:
+Clipso pricing is simple:
 
 🆓 Free:
 • Unlimited history
@@ -164,7 +164,7 @@ Less than $1/month. No brainer.
 > "Intelligent clipboard for Mac. Free with AI, $7.99/year for unlimited."
 
 **Description:**
-> ClipboardManager brings true AI intelligence to your Mac's clipboard—and it's free.
+> Clipso brings true AI intelligence to your Mac's clipboard—and it's free.
 >
 > **Free Features:**
 > - Semantic AI search (10/day)
@@ -178,7 +178,7 @@ Less than $1/month. No brainer.
 > - iCloud sync (encrypted)
 > - Custom snippets
 >
-> **Why ClipboardManager?**
+> **Why Clipso?**
 > - 47% cheaper than Paste ($14.99/year)
 > - More powerful than free alternatives
 > - Privacy-first: all AI runs on your Mac
@@ -192,11 +192,11 @@ Less than $1/month. No brainer.
 
 **Professional Positioning:**
 ```
-I built ClipboardManager to solve a problem I had daily: finding that code snippet I copied hours ago.
+I built Clipso to solve a problem I had daily: finding that code snippet I copied hours ago.
 
 Traditional clipboards use keyword search. If you copy "neural networks" and later search for "AI", you find nothing.
 
-ClipboardManager uses semantic AI (Apple's NLEmbedding) to understand meaning, not just keywords. And it runs 100% locally—no cloud, no privacy concerns.
+Clipso uses semantic AI (Apple's NLEmbedding) to understand meaning, not just keywords. And it runs 100% locally—no cloud, no privacy concerns.
 
 The basic version is free forever. Premium is $7.99/year (vs Paste's $14.99).
 
@@ -223,9 +223,9 @@ Try it free: [link]
 ```
 Hi [Name],
 
-I built ClipboardManager, a clipboard manager for macOS that's different in two key ways:
+I built Clipso, a clipboard manager for macOS that's different in two key ways:
 
-1. **Freemium vs forced subscription**: Paste and Copied force $10-15/year subscriptions. ClipboardManager is free, with optional premium features at $7.99/year—47% cheaper.
+1. **Freemium vs forced subscription**: Paste and Copied force $10-15/year subscriptions. Clipso is free, with optional premium features at $7.99/year—47% cheaper.
 
 2. **100% local AI vs cloud processing**: Unlike Paste, all AI processing happens on your Mac using Apple's NLEmbedding framework. Zero network requests. Open source for verification.
 
@@ -429,11 +429,11 @@ Best,
 
 **Day 0: Welcome Email**
 ```
-Subject: Welcome to ClipboardManager! Here's how to get started
+Subject: Welcome to Clipso! Here's how to get started
 
 Hi [Name],
 
-Thanks for downloading ClipboardManager!
+Thanks for downloading Clipso!
 
 You're now using the most private clipboard manager for Mac—with AI features built in.
 
@@ -449,16 +449,16 @@ Happy copying!
 
 **Day 3: Feature Highlight**
 ```
-Subject: Did you know? ClipboardManager has built-in OCR
+Subject: Did you know? Clipso has built-in OCR
 
 [Highlight OCR feature, mention premium upgrade at end]
 ```
 
 **Day 7: Power User Nudge**
 ```
-Subject: You're a ClipboardManager power user! 🚀
+Subject: You're a Clipso power user! 🚀
 
-We noticed you've been using ClipboardManager daily—awesome!
+We noticed you've been using Clipso daily—awesome!
 
 You've hit your 10 AI searches/day limit a few times. Ready for unlimited?
 
@@ -475,7 +475,7 @@ Just $7.99/year. Less than a coffee.
 
 **Day 14: Last Chance (Trial Ending)**
 ```
-Subject: Your ClipboardManager Premium trial ends tomorrow
+Subject: Your Clipso Premium trial ends tomorrow
 
 Your 14-day trial ends in 24 hours.
 
@@ -570,7 +570,7 @@ Success metrics:
 
 ---
 
-**This messaging positions ClipboardManager as:**
+**This messaging positions Clipso as:**
 - ✅ More affordable than Paste/Copied
 - ✅ More capable than free alternatives (Maccy/Clipy)
 - ✅ Privacy-superior to all competitors

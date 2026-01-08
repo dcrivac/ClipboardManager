@@ -1,6 +1,6 @@
 # Screenshot Capture Guide
 
-How to take professional screenshots of ClipboardManager for marketing materials.
+How to take professional screenshots of Clipso for marketing materials.
 
 ---
 
@@ -88,7 +88,7 @@ Copy these items beforehand (for semantic search demo):
 **Goal**: Show the main window with semantic search in action
 
 **Setup:**
-1. Press ⌘⇧V to open ClipboardManager
+1. Press ⌘⇧V to open Clipso
 2. Type in search: "machine learning"
 3. Wait for results to appear
 4. Make sure 3-4 ML-related items show at top
@@ -98,7 +98,7 @@ Copy these items beforehand (for semantic search demo):
 # Method 1: Window capture (⌘⇧4, then Space)
 - Press ⌘⇧4
 - Press Space (cursor becomes camera)
-- Click on ClipboardManager window
+- Click on Clipso window
 - Result: window with shadow, transparent background
 
 # Method 2: Selection (⌘⇧4)
@@ -126,7 +126,7 @@ Copy these items beforehand (for semantic search demo):
    - Clear all items except one with exact match
    - Take screenshot
 
-2. **Right Side (ClipboardManager)**:
+2. **Right Side (Clipso)**:
    - Search for "artificial intelligence"
    - Show 4+ results (ML, neural networks, deep learning, etc.)
    - Take screenshot
@@ -138,7 +138,7 @@ Copy these items beforehand (for semantic search demo):
 **Layout:**
 ```
 ┌─────────────────┬─────────────────┐
-│  Traditional    │ ClipboardManager│
+│  Traditional    │ Clipso│
 │  Clipboard      │                 │
 │                 │                 │
 │  Search: "AI"   │  Search: "AI"   │
@@ -208,11 +208,11 @@ Copy these items beforehand (for semantic search demo):
 
 ### Screenshot 5: Menu Bar Integration
 
-**Goal**: Show ClipboardManager in menu bar
+**Goal**: Show Clipso in menu bar
 
 **Setup:**
 1. Clean up menu bar (hide unnecessary icons)
-2. Click on ClipboardManager icon
+2. Click on Clipso icon
 3. Show dropdown menu if any
 
 **Capture:**
@@ -220,7 +220,7 @@ Copy these items beforehand (for semantic search demo):
 # Menu bar screenshot
 - ⌘⇧4
 - Select just the menu bar area
-- Include ClipboardManager icon + a few others for context
+- Include Clipso icon + a few others for context
 ```
 
 **Annotations:**
@@ -237,7 +237,7 @@ Copy these items beforehand (for semantic search demo):
 
 **Setup:**
 1. Copy a screenshot with text (e.g., tweet, code snippet)
-2. Open ClipboardManager
+2. Open Clipso
 3. Show the image item with extracted text visible
 
 **Capture:**
@@ -359,7 +359,7 @@ imageoptim screenshots/*.png
 
 2. **Context Detection** (15 seconds)
    - Copy a few items from different apps
-   - Open ClipboardManager
+   - Open Clipso
    - Show items auto-grouped into projects
 
 3. **Quick Access** (5 seconds)
@@ -436,7 +436,7 @@ Once you have real screenshots:
 <img src="assets/screenshot-hero.svg" alt="Hero">
 
 <!-- NEW (real screenshot) -->
-<img src="assets/screenshots/hero-real.png" alt="ClipboardManager semantic search in action">
+<img src="assets/screenshots/hero-real.png" alt="Clipso semantic search in action">
 ```
 
 ### Update README

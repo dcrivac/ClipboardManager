@@ -15,7 +15,7 @@
 
   <!-- Title -->
   <text x="540" y="150" font-family="-apple-system, sans-serif" font-size="64" font-weight="900" fill="white" text-anchor="middle">
-    ClipboardManager
+    Clipso
   </text>
   <text x="540" y="210" font-family="-apple-system, sans-serif" font-size="28" fill="white" text-anchor="middle" opacity="0.9">
     The Intelligent Clipboard for Mac
@@ -124,7 +124,7 @@
   <!-- Bottom CTA -->
   <g transform="translate(540, 950)">
     <text x="0" y="0" font-family="-apple-system, sans-serif" font-size="32" font-weight="700" fill="white" text-anchor="middle">
-      github.com/dcrivac/ClipboardManager
+      github.com/dcrivac/Clipso
     </text>
   </g>
 

@@ -27,7 +27,7 @@ Follow these exact steps to get your waitlist working.
    - Click **"+ New Form"**
 
 2. **Form Settings:**
-   - **Name:** `ClipboardManager Waitlist`
+   - **Name:** `Clipso Waitlist`
    - **Email:** (your email - where you'll receive signups)
    - Click **"Create Form"**
 
@@ -47,7 +47,7 @@ I've prepared the landing page - you just need to add your form ID:
 Run this command, replacing `YOUR_FORM_ID` with your actual form ID:
 
 ```bash
-cd /home/user/ClipboardManager
+cd /home/user/Clipso
 sed -i 's|action="https://formspree.io/f/YOUR_FORM_ID"|action="https://formspree.io/f/xwkgpqyw"|g' docs/index.html
 ```
 
@@ -114,14 +114,14 @@ Send an automatic thank-you email to people who sign up:
 
 **Subject:**
 ```
-Thanks for joining the ClipboardManager waitlist! 🚀
+Thanks for joining the Clipso waitlist! 🚀
 ```
 
 **Message:**
 ```
 Hi there,
 
-Thanks for joining the ClipboardManager waitlist!
+Thanks for joining the Clipso waitlist!
 
 You're on the list to be among the first to experience:
 • AI-powered semantic search that understands meaning
@@ -130,14 +130,14 @@ You're on the list to be among the first to experience:
 • Free tier + Premium at $7.99/year (47% less than Paste)
 
 We'll email you as soon as we launch. In the meantime:
-→ Star us on GitHub: https://github.com/dcrivac/ClipboardManager
+→ Star us on GitHub: https://github.com/dcrivac/Clipso
 → Follow development progress
 → Build from source if you're a developer
 
 Thanks for your support!
 
 Best,
-The ClipboardManager Team
+The Clipso Team
 
 ---
 P.S. We respect your privacy. You can unsubscribe anytime.
@@ -209,7 +209,7 @@ Full URL: https://formspree.io/f/___________________
 ## Next: Share Your Waitlist
 
 Once deployed, share on:
-- **Twitter:** "Building ClipboardManager - intelligent clipboard for Mac with AI. Join waitlist: [link]"
+- **Twitter:** "Building Clipso - intelligent clipboard for Mac with AI. Join waitlist: [link]"
 - **Reddit:** r/macapps, r/opensource
 - **Hacker News:** When you have good traction
 - **Product Hunt:** Use "Ship" to collect emails before main launch

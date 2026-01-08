@@ -1,4 +1,4 @@
-# ClipboardManager Pricing Strategy
+# Clipso Pricing Strategy
 
 **Model:** Freemium (Free basic + Paid premium)
 
@@ -160,7 +160,7 @@
 
 ### vs. Paste ($14.99/year)
 
-| Feature | Paste | ClipboardManager Free | ClipboardManager Premium |
+| Feature | Paste | Clipso Free | Clipso Premium |
 |---------|-------|----------------------|--------------------------|
 | Price | $14.99/year | **Free** | **$7.99/year** |
 | Semantic Search | ✅ | 10/day | ✅ Unlimited |
@@ -175,7 +175,7 @@
 
 ### vs. Copied ($9.99/year)
 
-| Feature | Copied | ClipboardManager Free | ClipboardManager Premium |
+| Feature | Copied | Clipso Free | Clipso Premium |
 |---------|--------|----------------------|--------------------------|
 | Price | $9.99/year | **Free** | **$7.99/year** |
 | Semantic Search | ❌ | **10/day** ✅ | **✅ Unlimited** |
@@ -189,7 +189,7 @@
 
 ### vs. Maccy (Free)
 
-| Feature | Maccy | ClipboardManager Free | ClipboardManager Premium |
+| Feature | Maccy | Clipso Free | Clipso Premium |
 |---------|-------|----------------------|--------------------------|
 | Price | Free | Free | $7.99/year |
 | Semantic Search | ❌ | **10/day** ✅ | **✅ Unlimited** |

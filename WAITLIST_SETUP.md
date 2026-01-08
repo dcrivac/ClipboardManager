@@ -31,7 +31,7 @@ Formspree is the easiest way to handle form submissions without backend code.
    - Go to: https://formspree.io/
    - Sign up (free tier: 50 submissions/month)
    - Click "New Form"
-   - Name it: "ClipboardManager Waitlist"
+   - Name it: "Clipso Waitlist"
 
 2. **Get Your Form ID**
    - Copy the form endpoint, it looks like: `https://formspree.io/f/YOUR_FORM_ID`
@@ -140,11 +140,11 @@ If you want to send launch emails later:
 Set this up in Formspree to automatically thank new signups:
 
 ```
-Subject: Thanks for joining the ClipboardManager waitlist!
+Subject: Thanks for joining the Clipso waitlist!
 
 Hi there,
 
-Thanks for your interest in ClipboardManager!
+Thanks for your interest in Clipso!
 
 You're on the list to be among the first to experience truly intelligent clipboard management with:
 • Semantic AI search that understands meaning
@@ -153,12 +153,12 @@ You're on the list to be among the first to experience truly intelligent clipboa
 • Free tier + Premium at $7.99/year (47% less than Paste)
 
 We'll email you as soon as we launch. In the meantime:
-- Star us on GitHub: https://github.com/dcrivac/ClipboardManager
+- Star us on GitHub: https://github.com/dcrivac/Clipso
 - Follow development progress
 - Try building from source if you're a developer
 
 Thanks!
-The ClipboardManager Team
+The Clipso Team
 
 P.S. We hate spam too. You can unsubscribe anytime.
 ```
@@ -188,16 +188,16 @@ When you're ready to launch with the actual app:
 ### Launch Email Template:
 
 ```
-Subject: 🚀 ClipboardManager is now available!
+Subject: 🚀 Clipso is now available!
 
 Hi [Name],
 
-Great news! ClipboardManager is officially launching today.
+Great news! Clipso is officially launching today.
 
 You're getting this email because you joined our waitlist. Here's what you need to know:
 
 **Download Now (Free):**
-https://github.com/dcrivac/ClipboardManager/releases
+https://github.com/dcrivac/Clipso/releases
 
 **What's Included:**
 • Free tier: 10 AI semantic searches/day
@@ -213,7 +213,7 @@ Download link: [GitHub Releases]
 Pricing page: [Landing Page URL]
 
 Thanks for your patience!
-The ClipboardManager Team
+The Clipso Team
 ```
 
 ---
@@ -315,7 +315,7 @@ Before deploying publicly, test the form:
    - Enable Pages in settings
 
 3. **Share Your Waitlist** (ongoing)
-   - Twitter: "Building ClipboardManager—intelligent clipboard for Mac. Join the waitlist!"
+   - Twitter: "Building Clipso—intelligent clipboard for Mac. Join the waitlist!"
    - Reddit: r/macapps, r/opensource
    - Hacker News: Show HN when you have 50+ signups
    - Product Hunt: Launch with Ship to collect emails

@@ -19,7 +19,7 @@ killall Finder
 
 ### Set Up Sample Data
 
-Open ClipboardManager and copy these items in order:
+Open Clipso and copy these items in order:
 
 ```
 1. "Neural networks are powerful for pattern recognition"
@@ -44,7 +44,7 @@ Open ClipboardManager and copy these items in order:
 ### Record These 5 Scenes
 
 **Scene 1: The Problem (20 seconds)**
-- Open ClipboardManager with ⌘⇧V
+- Open Clipso with ⌘⇧V
 - Type in search: "AI"
 - Show: 0 results (because you have "neural networks", "TensorFlow", etc.)
 - Pause for 2 seconds so viewers see the empty results
@@ -64,11 +64,11 @@ Open ClipboardManager and copy these items in order:
 **Scene 4: OCR Demo (20 seconds)**
 - Have a screenshot with text ready
 - Copy the screenshot
-- Show ClipboardManager extracting the text automatically
+- Show Clipso extracting the text automatically
 - Highlight the extracted text
 
 **Scene 5: Call to Action (10 seconds)**
-- Show the GitHub page: github.com/dcrivac/ClipboardManager
+- Show the GitHub page: github.com/dcrivac/Clipso
 - Show the "Download" or "Clone" button
 
 ### Stop Recording
@@ -89,7 +89,7 @@ Open ClipboardManager and copy these items in order:
 
 **Opening Title (3 seconds):**
 ```
-"ClipboardManager"
+"Clipso"
 The Intelligent Clipboard for Mac
 ```
 
@@ -128,7 +128,7 @@ The Intelligent Clipboard for Mac
    - Resolution: **1080p**
    - Quality: **High**
    - Compress: **Faster**
-4. Save as: `ClipboardManager-Demo.mp4`
+4. Save as: `Clipso-Demo.mp4`
 5. Click **"Next"** → **"Save"**
 
 Wait 2-3 minutes for export to complete.
@@ -140,7 +140,7 @@ Wait 2-3 minutes for export to complete.
 ### To YouTube (Unlisted):
 1. Go to studio.youtube.com
 2. Click **"Create"** → **"Upload video"**
-3. Upload `ClipboardManager-Demo.mp4`
+3. Upload `Clipso-Demo.mp4`
 4. Set visibility: **Unlisted** (not public yet)
 5. Copy the URL
 
@@ -237,7 +237,7 @@ This works great for social media where videos autoplay muted anyway.
 ## Sample Timeline (90 seconds total)
 
 ```
-0:00 - 0:03   Title card: "ClipboardManager"
+0:00 - 0:03   Title card: "Clipso"
 0:03 - 0:23   Scene 1: Problem (keyword search fails)
 0:23 - 0:26   Text: "❌ Traditional Search: 0 Results"
 0:26 - 0:56   Scene 2: Solution (semantic search works)
@@ -245,7 +245,7 @@ This works great for social media where videos autoplay muted anyway.
 0:59 - 1:19   Scene 3: Context detection
 1:19 - 1:22   Text: "🎯 Auto-Organizes by Context"
 1:22 - 1:27   Scene 4: Call to action
-1:27 - 1:30   Final card: "github.com/dcrivac/ClipboardManager"
+1:27 - 1:30   Final card: "github.com/dcrivac/Clipso"
 ```
 
 ---

@@ -1,15 +1,15 @@
 <div align="center">
 
-![ClipboardManager Banner](assets/banner.svg)
+![Clipso Banner](assets/banner.svg)
 
-# ClipboardManager
+# Clipso
 
 ### The First Truly Intelligent Clipboard for Mac
 
 [![macOS](https://img.shields.io/badge/macOS-13.0+-blue.svg)](https://www.apple.com/macos/)
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
 [![License](https://img.shields.io/badge/License-Personal%20%26%20Educational-green.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/dcrivac/ClipboardManager?style=social)](https://github.com/dcrivac/ClipboardManager/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/dcrivac/Clipso?style=social)](https://github.com/dcrivac/Clipso/stargazers)
 
 **[Features](#-features)** • **[Pricing](#-pricing)** • **[Download](#-installation)** • **[Demo](#-testing-semantic-search)** • **[Docs](#-architecture)** • **[Contributing](#-contributing)**
 
@@ -23,7 +23,7 @@ An intelligent macOS clipboard manager with **AI-powered semantic search** and *
 
 ### ✨ What Makes It Different
 
-| Traditional Clipboards | ClipboardManager |
+| Traditional Clipboards | Clipso |
 |:----------------------|:-----------------|
 | 🔍 Exact keyword matching only | 🧠 **Semantic AI search** - finds by meaning |
 | 📋 Manual organization & tags | 🎯 **Auto context detection** - organizes itself |
@@ -100,7 +100,7 @@ An intelligent macOS clipboard manager with **AI-powered semantic search** and *
 
 ## 💎 Pricing
 
-ClipboardManager offers a generous free tier and an optional Premium upgrade for power users.
+Clipso offers a generous free tier and an optional Premium upgrade for power users.
 
 ### Free Tier (Forever)
 - ✅ Unlimited clipboard history
@@ -154,13 +154,13 @@ ClipboardManager offers a generous free tier and an optional Premium upgrade for
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/dcrivac/ClipboardManager.git
-cd ClipboardManager
+git clone https://github.com/dcrivac/Clipso.git
+cd Clipso
 ```
 
 2. Open the project in Xcode:
 ```bash
-open ClipboardManager.xcodeproj
+open Clipso.xcodeproj
 ```
 
 3. Build and run (⌘R)
@@ -200,7 +200,7 @@ Then search for "AI and machine learning" - items 1 and 3 will rank highest, eve
 
 ### Core Components
 
-**AI Engine** (`ClipboardManagerApp.swift:505-1310`)
+**AI Engine** (`ClipsoApp.swift:505-1310`)
 - `SemanticEngine`: NLEmbedding integration, cosine similarity
 - `EmbeddingProcessor`: Background embedding generation
 - `ContextDetector`: Pattern detection and clustering
@@ -212,13 +212,13 @@ Then search for "AI and machine learning" - items 1 and 3 will rank highest, eve
 - Security: `encryptedContent`, `isEncrypted`
 - AI fields: `embedding`, `projectTag`, `contextScore`, `relatedItemIDs`, `lastAccessedAt`, `accessCount`
 
-**Clipboard Monitor** (`ClipboardManagerApp.swift:1330`)
+**Clipboard Monitor** (`ClipsoApp.swift:1330`)
 - 0.5s polling with NSPasteboard
 - Main thread timer for UI responsiveness
 - Automatic embedding generation on capture
 - Background processing to avoid blocking
 
-**Encryption** (`ClipboardManagerApp.swift:215`)
+**Encryption** (`ClipsoApp.swift:215`)
 - AES-256-GCM encryption
 - Keychain-based key storage
 - Per-item encryption toggle
@@ -315,22 +315,22 @@ Embeddings are mathematical representations of text - they maintain the same pri
 ### Project Structure
 
 ```
-ClipboardManager/
-├── ClipboardManager/
-│   ├── ClipboardManagerApp.swift          # Main app (2400+ lines)
+Clipso/
+├── Clipso/
+│   ├── ClipsoApp.swift          # Main app (2400+ lines)
 │   ├── ClipboardItemEntity+CoreDataClass.swift
 │   ├── ClipboardItemEntity+CoreDataProperties.swift
-│   ├── ClipboardManager.xcdatamodeld/    # Core Data model
+│   ├── Clipso.xcdatamodeld/    # Core Data model
 │   └── Info.plist
-├── ClipboardManager.xcodeproj/
+├── Clipso.xcodeproj/
 └── README.md
 ```
 
 ### Building
 
 1. Install Xcode 15.0+
-2. Open `ClipboardManager.xcodeproj`
-3. Select "ClipboardManager" scheme
+2. Open `Clipso.xcodeproj`
+3. Select "Clipso" scheme
 4. Build & Run (⌘R)
 
 ### Adding Features
@@ -410,31 +410,31 @@ This project is available for personal and educational use.
 <details>
 <summary><strong>Is my clipboard data safe?</strong></summary>
 
-Yes! 100% of processing happens on your Mac using Apple's frameworks. ClipboardManager makes zero network requests and has no telemetry. Your data is as private as any other file on your computer. You can verify this yourself - the code is fully open source.
+Yes! 100% of processing happens on your Mac using Apple's frameworks. Clipso makes zero network requests and has no telemetry. Your data is as private as any other file on your computer. You can verify this yourself - the code is fully open source.
 </details>
 
 <details>
 <summary><strong>How does semantic search work without cloud AI?</strong></summary>
 
-ClipboardManager uses Apple's built-in NLEmbedding framework, which generates 50-dimensional semantic vectors completely on-device. These mathematical representations capture meaning, allowing similarity comparisons without external APIs.
+Clipso uses Apple's built-in NLEmbedding framework, which generates 50-dimensional semantic vectors completely on-device. These mathematical representations capture meaning, allowing similarity comparisons without external APIs.
 </details>
 
 <details>
 <summary><strong>Will this slow down my Mac?</strong></summary>
 
-No. ClipboardManager is extremely lightweight (~50MB RAM with 1000 items). Embedding generation happens in the background, and searches complete in under 50ms even with thousands of items.
+No. Clipso is extremely lightweight (~50MB RAM with 1000 items). Embedding generation happens in the background, and searches complete in under 50ms even with thousands of items.
 </details>
 
 <details>
 <summary><strong>Can I use this alongside other clipboard managers?</strong></summary>
 
-While technically possible, it's not recommended. Multiple clipboard managers can conflict and cause unexpected behavior. ClipboardManager is designed to be your only clipboard solution.
+While technically possible, it's not recommended. Multiple clipboard managers can conflict and cause unexpected behavior. Clipso is designed to be your only clipboard solution.
 </details>
 
 <details>
 <summary><strong>Does it work with images?</strong></summary>
 
-Yes! ClipboardManager captures images and includes built-in OCR to extract text, making image content searchable.
+Yes! Clipso captures images and includes built-in OCR to extract text, making image content searchable.
 </details>
 
 <details>
@@ -448,17 +448,17 @@ Not yet, but it's on the roadmap! The current focus is perfecting the macOS expe
 ## 📧 Support
 
 For issues and questions:
-- 🐛 [Create an issue on GitHub](https://github.com/dcrivac/ClipboardManager/issues)
-- 💬 [Check existing issues](https://github.com/dcrivac/ClipboardManager/issues)
-- 📖 [Read the docs](https://github.com/dcrivac/ClipboardManager#readme)
+- 🐛 [Create an issue on GitHub](https://github.com/dcrivac/Clipso/issues)
+- 💬 [Check existing issues](https://github.com/dcrivac/Clipso/issues)
+- 📖 [Read the docs](https://github.com/dcrivac/Clipso#readme)
 
 ---
 
 ## ⭐ Show Your Support
 
-If ClipboardManager helps you stay productive:
+If Clipso helps you stay productive:
 - ⭐ Star this repository
-- 🐦 [Tweet about it](https://twitter.com/intent/tweet?text=Just%20found%20ClipboardManager%20-%20an%20AI-powered%20clipboard%20for%20Mac%20that%20actually%20understands%20meaning!%20100%25%20private%2C%20free%20tier%20available.%20%F0%9F%A4%96&url=https://github.com/dcrivac/ClipboardManager)
+- 🐦 [Tweet about it](https://twitter.com/intent/tweet?text=Just%20found%20Clipso%20-%20an%20AI-powered%20clipboard%20for%20Mac%20that%20actually%20understands%20meaning!%20100%25%20private%2C%20free%20tier%20available.%20%F0%9F%A4%96&url=https://github.com/dcrivac/Clipso)
 - 🔄 Share with colleagues
 - 🤝 Contribute code or ideas
 
@@ -472,10 +472,10 @@ If ClipboardManager helps you stay productive:
 
 🔒 **100% Private** • ✨ **Free + Premium ($7.99/yr)** • 🌟 **100% Open Source**
 
-[Website](https://dcrivac.github.io/ClipboardManager/) • [Download](https://github.com/dcrivac/ClipboardManager/releases) • [Issues](https://github.com/dcrivac/ClipboardManager/issues) • [Contributing](https://github.com/dcrivac/ClipboardManager#contributing)
+[Website](https://dcrivac.github.io/Clipso/) • [Download](https://github.com/dcrivac/Clipso/releases) • [Issues](https://github.com/dcrivac/Clipso/issues) • [Contributing](https://github.com/dcrivac/Clipso#contributing)
 
 ---
 
-<sub>Copyright © 2025 ClipboardManager • Available for personal and educational use</sub>
+<sub>Copyright © 2025 Clipso • Available for personal and educational use</sub>
 
 </div>

@@ -106,7 +106,7 @@
       </g>
     </g>
 
-    <!-- Card 4: ClipboardManager (Featured) -->
+    <!-- Card 4: Clipso (Featured) -->
     <g transform="translate(810, -20)">
       <!-- Glow effect -->
       <rect x="-4" y="-4" width="238" height="368" rx="18" fill="none" stroke="#6366F1" stroke-width="4" opacity="0.5"/>
@@ -120,7 +120,7 @@
       </text>
 
       <text x="115" y="80" font-family="-apple-system, sans-serif" font-size="28" font-weight="900" fill="white" text-anchor="middle">
-        ClipboardManager
+        Clipso
       </text>
       <text x="115" y="110" font-family="-apple-system, sans-serif" font-size="14" fill="#A5B4FC" text-anchor="middle">
         The Smart Choice
@@ -156,7 +156,7 @@
   <!-- Footer -->
   <g transform="translate(600, 630)">
     <text x="0" y="0" font-family="-apple-system, sans-serif" font-size="22" font-weight="600" fill="white" text-anchor="middle">
-      github.com/dcrivac/ClipboardManager
+      github.com/dcrivac/Clipso
     </text>
   </g>
 </svg>

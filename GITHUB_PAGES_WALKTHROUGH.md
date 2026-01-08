@@ -8,7 +8,7 @@
 
 By the end of this guide:
 - ✨ Your landing page will be **live on the internet**
-- 🔗 Accessible at `https://dcrivac.github.io/ClipboardManager/`
+- 🔗 Accessible at `https://dcrivac.github.io/Clipso/`
 - 🔒 Free HTTPS (secure connection)
 - 🌍 Available worldwide via CDN
 
@@ -33,7 +33,7 @@ That's it! No technical skills required.
 
 **1.1** Open your browser and go to:
 ```
-https://github.com/dcrivac/ClipboardManager
+https://github.com/dcrivac/Clipso
 ```
 
 **1.2** Look for the **"Settings"** tab at the top
@@ -104,7 +104,7 @@ Branch
 **4.1** You'll see a message:
 ```
 ✓ Your site is ready to be published at
-  https://dcrivac.github.io/ClipboardManager/
+  https://dcrivac.github.io/Clipso/
 ```
 
 **4.2** Wait 1-2 minutes for GitHub to build your site
@@ -112,7 +112,7 @@ Branch
 You can refresh the page to check status. When ready, you'll see:
 ```
 ✓ Your site is live at
-  https://dcrivac.github.io/ClipboardManager/
+  https://dcrivac.github.io/Clipso/
 ```
 
 ---
@@ -121,7 +121,7 @@ You can refresh the page to check status. When ready, you'll see:
 
 **5.1** Click the URL or copy-paste into your browser:
 ```
-https://dcrivac.github.io/ClipboardManager/
+https://dcrivac.github.io/Clipso/
 ```
 
 **5.2** Your landing page should be live!
@@ -147,7 +147,7 @@ If you see your landing page → **Success!** 🎉
 
 Check by going to:
 ```
-https://github.com/dcrivac/ClipboardManager
+https://github.com/dcrivac/Clipso
 ```
 
 You should see `index.html` in the file list.
@@ -200,7 +200,7 @@ To deploy from `main` branch instead:
 
 **Step 1**: Go to your repository homepage
 ```
-https://github.com/dcrivac/ClipboardManager
+https://github.com/dcrivac/Clipso
 ```
 
 **Step 2**: Click **"Compare & pull request"** button (yellow banner at top)
@@ -248,7 +248,7 @@ Then update GitHub Pages settings to use `main` branch.
 
 ## 🌐 Custom Domain (Optional)
 
-Want to use `clipboard.yourdomain.com` instead of `dcrivac.github.io/ClipboardManager`?
+Want to use `clipboard.yourdomain.com` instead of `dcrivac.github.io/Clipso`?
 
 ### Prerequisites
 
@@ -403,9 +403,9 @@ After your site is live:
 ## 📝 Quick Reference
 
 **Your Live URLs**:
-- **Landing Page**: https://dcrivac.github.io/ClipboardManager/
-- **GitHub Repo**: https://github.com/dcrivac/ClipboardManager
-- **Settings**: https://github.com/dcrivac/ClipboardManager/settings/pages
+- **Landing Page**: https://dcrivac.github.io/Clipso/
+- **GitHub Repo**: https://github.com/dcrivac/Clipso
+- **Settings**: https://github.com/dcrivac/Clipso/settings/pages
 
 **Common Tasks**:
 
@@ -478,7 +478,7 @@ Create `sitemap.xml`:
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dcrivac.github.io/ClipboardManager/</loc>
+    <loc>https://dcrivac.github.io/Clipso/</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>1.0</priority>
   </url>
@@ -535,4 +535,4 @@ Your landing page is now **live on the internet** and accessible to everyone! �
 
 ---
 
-*This walkthrough is part of the ClipboardManager marketing package. See [COMPLETE_MARKETING_PACKAGE.md](COMPLETE_MARKETING_PACKAGE.md) for the full launch strategy.*
+*This walkthrough is part of the Clipso marketing package. See [COMPLETE_MARKETING_PACKAGE.md](COMPLETE_MARKETING_PACKAGE.md) for the full launch strategy.*

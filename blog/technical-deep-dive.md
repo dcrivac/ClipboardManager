@@ -28,7 +28,7 @@ Apple's NLEmbedding generates 50-dimensional vectors locally on your Mac. No ser
 
 ### The Implementation
 
-Here's how I built it into ClipboardManager:
+Here's how I built it into Clipso:
 
 #### Step 1: Generate Embeddings on Copy
 
@@ -208,7 +208,7 @@ Your clipboard items automatically group into color-coded projects:
 This was the whole point: **zero cloud dependency**.
 
 ```swift
-// This is the entire network code in ClipboardManager:
+// This is the entire network code in Clipso:
 // [crickets]
 ```
 
@@ -263,9 +263,9 @@ Even with embeddings for 1000 items, search feels instant. Background processing
 
 ## Try It Yourself
 
-ClipboardManager is free and open source:
+Clipso is free and open source:
 
-👉 **[github.com/dcrivac/ClipboardManager](https://github.com/dcrivac/ClipboardManager)**
+👉 **[github.com/dcrivac/Clipso](https://github.com/dcrivac/Clipso)**
 
 ### Key Features:
 - 🧠 Semantic search with NLEmbedding
@@ -301,7 +301,7 @@ If you're building Mac apps, I highly recommend exploring Apple's ML frameworks.
 ### Resources
 
 - [NLEmbedding Documentation](https://developer.apple.com/documentation/naturallanguage/nlembedding)
-- [ClipboardManager Source Code](https://github.com/dcrivac/ClipboardManager)
+- [Clipso Source Code](https://github.com/dcrivac/Clipso)
 - [Apple ML Frameworks Overview](https://developer.apple.com/machine-learning/)
 
 ---

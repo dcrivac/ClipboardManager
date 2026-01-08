@@ -3,7 +3,7 @@
 # prepare-for-recording.sh
 # Prepares your Mac for a clean demo video recording
 
-echo "🎬 Preparing Mac for ClipboardManager Demo Recording..."
+echo "🎬 Preparing Mac for Clipso Demo Recording..."
 echo ""
 
 # 1. Hide desktop icons
@@ -34,7 +34,7 @@ echo ""
 echo "✅ Mac is ready for recording!"
 echo ""
 echo "Next steps:"
-echo "1. Open ClipboardManager"
+echo "1. Open Clipso"
 echo "2. Add sample data (see QUICK_VIDEO_GUIDE.md)"
 echo "3. Press ⌘⇧5 to start recording"
 echo ""

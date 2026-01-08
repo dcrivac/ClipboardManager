@@ -146,7 +146,7 @@ Due Date: January 31, 2025
 
 **Action:**
 1. Copy the screenshot image
-2. Show ClipboardManager automatically extracting text
+2. Show Clipso automatically extracting text
 3. Show extracted text: "INVOICE #12345..."
 4. Click to copy just the text
 
@@ -160,7 +160,7 @@ Due Date: January 31, 2025
 ### Take 1: Complete Feature Demo (90 seconds)
 
 ```
-[0:00-0:03] Title card: "ClipboardManager"
+[0:00-0:03] Title card: "Clipso"
 
 [0:03-0:08] Show traditional search failing
             Type "AI" → 0 results
@@ -196,8 +196,8 @@ Due Date: January 31, 2025
             Show star count
 
 [1:10-1:15] Final title card:
-            "ClipboardManager"
-            "github.com/dcrivac/ClipboardManager"
+            "Clipso"
+            "github.com/dcrivac/Clipso"
             "Free & Open Source"
 ```
 
@@ -208,7 +208,7 @@ Due Date: January 31, 2025
 For Twitter/social media (file size limits):
 
 ```
-[0:00-0:03] Title: "ClipboardManager"
+[0:00-0:03] Title: "Clipso"
 
 [0:03-0:12] Split screen:
             Left: Keyword search "AI" → 0 results ❌
@@ -220,7 +220,7 @@ For Twitter/social media (file size limits):
 
 [0:22-0:25] Text: "Auto-organizes. 100% private. Free."
 
-[0:25-0:30] Final card: "github.com/dcrivac/ClipboardManager"
+[0:25-0:30] Final card: "github.com/dcrivac/Clipso"
 ```
 
 ---
@@ -288,14 +288,14 @@ Before recording, practice:
 
 Before pressing ⌘⇧5:
 
-- [ ] All sample items copied into ClipboardManager
+- [ ] All sample items copied into Clipso
 - [ ] Desktop cleaned (icons hidden)
 - [ ] Do Not Disturb enabled
 - [ ] Resolution set to 1920×1080
 - [ ] Practiced all actions
 - [ ] Read through script
 - [ ] Screenshot ready for OCR demo
-- [ ] ClipboardManager app positioned nicely on screen
+- [ ] Clipso app positioned nicely on screen
 - [ ] Timer ready (aim for 90-120 seconds total)
 
 ---
