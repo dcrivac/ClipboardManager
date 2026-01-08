@@ -126,11 +126,14 @@
         The Smart Choice
       </text>
 
-      <text x="115" y="175" font-family="-apple-system, sans-serif" font-size="56" font-weight="900" fill="#10B981" text-anchor="middle">
-        $0
+      <text x="115" y="165" font-family="-apple-system, sans-serif" font-size="42" font-weight="900" fill="#10B981" text-anchor="middle">
+        $0 or $7.99
       </text>
-      <text x="115" y="210" font-family="-apple-system, sans-serif" font-size="20" font-weight="600" fill="#10B981" text-anchor="middle">
-        forever
+      <text x="115" y="195" font-family="-apple-system, sans-serif" font-size="18" font-weight="600" fill="#10B981" text-anchor="middle">
+        free tier / year
+      </text>
+      <text x="115" y="220" font-family="-apple-system, sans-serif" font-size="14" fill="#A5B4FC" text-anchor="middle">
+        47% cheaper than Paste
       </text>
 
       <g transform="translate(30, 250)">

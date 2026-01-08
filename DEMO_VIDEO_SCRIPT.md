@@ -38,10 +38,10 @@
 **Visual**:
 - Logo animation: ClipboardManager logo fades in with subtle glow
 - Tagline appears: "The First Truly Intelligent Clipboard for Mac"
-- Quick feature icons fly in: 🧠 AI • 🔒 Private • 💰 Free
+- Quick feature icons fly in: 🧠 AI • 🔒 Private • 💰 $7.99/yr
 
 **Voiceover**:
-> "Meet ClipboardManager - the first clipboard for Mac with true AI intelligence. And it's completely free."
+> "Meet ClipboardManager - the first clipboard for Mac with true AI intelligence. Free tier available, or Premium for just $7.99 a year."
 
 **Music**: Transition to upbeat, optimistic music
 
@@ -181,16 +181,17 @@ Quick cuts showing features in action (3-4 seconds each):
 | Semantic AI Search | ✅ | ❌ |
 | Auto Context Detection | ✅ | ❌ |
 | 100% Private | ✅ | ❌ |
-| Price | FREE | $10-15/year |
+| Price | Free or $7.99/yr | $10-15/year |
 
-- Zoom into "FREE" vs "$14.99/year"
+- Zoom into "$7.99/year" vs "$14.99/year"
 
 **Voiceover**:
-> "Unlike Paste, Copied, or other clipboard managers that cost fifteen dollars a year and send your data to the cloud, ClipboardManager is completely free, open source, and keeps everything local."
+> "Unlike Paste or Copied that cost ten to fifteen dollars a year and send your data to the cloud, ClipboardManager offers a generous free tier or Premium for just $7.99/year—47% cheaper with superior privacy. Everything stays local."
 
 **On-screen text**:
-- "Free Forever"
-- "Open Source"
+- "Free Tier: 10 AI searches/day"
+- "Premium: $7.99/year"
+- "47% cheaper than Paste"
 
 ---
 
