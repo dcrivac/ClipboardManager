@@ -144,6 +144,30 @@ Settings sections:
   - `enableOCR`: Bool (default true)
   - `enableSmartPaste`: Bool (default true)
 
+### License & Subscription Management (NEW - RevenueCat)
+
+**RevenueCatManager** (Managers/RevenueCatManager.swift)
+- Modern subscription management using RevenueCat + Apple IAP
+- License Types: `free`, `lifetime`, `annual`, `monthly`
+- Singleton pattern with @Published properties
+- Automatic customer info syncing from RevenueCat
+- Feature gating via RevenueCat entitlements ("pro")
+- Integration with StoreKit2 for Apple In-App Purchases
+
+**Monetization Model:**
+- Freemium with per-year subscription and lifetime purchase options
+- Free tier: 250 items, 30-day retention, keyword search
+- Pro tier: Unlimited items, unlimited retention, AI features
+- No external payment processor - uses Apple's payment system directly
+- RevenueCat handles backend validation and entitlement management
+
+**Key Methods:**
+- `hasProAccess()` - Check if user has Pro features
+- `purchase(productID:)` - Handle purchase via RevenueCat
+- `restorePurchases()` - Restore previous purchases
+- `canUseSemanticSearch()`, `canUseContextDetection()` - Feature gating
+- `getMaxItems()`, `getMaxRetentionDays()` - License-based limits
+
 ### Key Features
 
 1. **Global Keyboard Shortcut**: Cmd+Shift+V anywhere in macOS
@@ -159,12 +183,34 @@ Settings sections:
 ## File Structure
 
 ```
-ClipboardManager/
-├── ClipboardManagerApp.swift           # Main app code (~1377 lines)
-├── ClipboardItemEntity+CoreDataClass.swift
-├── ClipboardItemEntity+CoreDataProperties.swift
-├── ClipboardManager.xcdatamodeld.zip   # Core Data model
-├── Info.plist                          # Permissions
+Clipso/
+├── ClipsoApp.swift                     # Main app entry + AppDelegate
+├── Managers/
+│   ├── RevenueCatManager.swift         # RevenueCat subscription logic (NEW)
+│   ├── ClipboardMonitor.swift
+│   ├── SettingsManager.swift
+│   └── LicenseManager.swift            # Deprecated (kept for reference)
+├── Views/
+│   ├── ContentView.swift               # Main clipboard UI
+│   ├── SettingsView.swift              # Settings (updated for RevenueCat)
+│   ├── RevenueCatPaywallView.swift     # Purchase paywall (NEW)
+│   ├── FlowLayout.swift
+│   └── TagInputSheet.swift
+├── AI/
+│   ├── SemanticEngine.swift
+│   ├── SmartSearchEngine.swift
+│   ├── ContextDetector.swift
+│   └── ... (other AI components)
+├── Core/
+│   ├── PersistenceController.swift
+│   ├── EncryptionHelper.swift
+│   └── ... (core utilities)
+├── Models/
+│   ├── ClipboardItemEntity+CoreDataClass.swift
+│   ├── ClipboardItemEntity+CoreDataProperties.swift
+│   └── ClipboardManager.xcdatamodeld  # Core Data model
+├── Info.plist                          # Permissions + RevenueCat config
+├── REVENUECAT_SETUP_GUIDE.md           # RevenueCat setup instructions (NEW)
 └── README.md
 ```
 
@@ -181,6 +227,19 @@ Defined in Info.plist:
 - SwiftUI target (macOS 13.0+)
 - Core Data model must be included in target
 - Entity classes must be visible to app target
+- RevenueCat SDK must be added via SPM (see REVENUECAT_SETUP_GUIDE.md)
+- Apple Developer Team ID required for In-App Purchases
+
+### RevenueCat Integration
+For complete setup instructions, see `REVENUECAT_SETUP_GUIDE.md`
+
+**Quick Setup:**
+1. Create App Store Connect bundle ID: `com.clipso`
+2. Add IAP products: `com.clipso.lifetime`, `com.clipso.annual`
+3. Create RevenueCat account and import products
+4. Get RevenueCat API key and update `RevenueCatManager.swift`
+5. Add RevenueCat SDK via SPM in Xcode
+6. Configure signing in Xcode (team ID + In-App Purchase capability)
 
 ### Common Tasks
 

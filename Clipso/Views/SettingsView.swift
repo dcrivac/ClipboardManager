@@ -6,8 +6,8 @@ import CoreData
 struct SettingsView: View {
     @ObservedObject private var settings = SettingsManager.shared
     @State private var newExcludedApp = ""
-    @StateObject private var licenseManager = LicenseManager.shared
-    @State private var showLicenseActivation = false
+    @StateObject private var licenseManager = RevenueCatManager.shared
+    @State private var showPaywall = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -35,20 +35,17 @@ struct SettingsView: View {
                                     Text("✓ Pro License Active")
                                         .font(.headline)
                                         .foregroundColor(.green)
-                                    if let email = licenseManager.licenseEmail {
-                                        Text(email)
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-                                    Text(licenseManager.licenseType.rawValue.capitalized)
+                                    Text(licenseManager.getLicenseStatusText())
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
                                 Spacer()
-                                Button("Deactivate") {
-                                    licenseManager.deactivateLicense()
+                                Button("Restore Purchases") {
+                                    Task {
+                                        try? await licenseManager.restorePurchases()
+                                    }
                                 }
-                                .foregroundColor(.red)
+                                .foregroundColor(.blue)
                             } else {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text("Free Plan")
@@ -59,14 +56,14 @@ struct SettingsView: View {
                                 }
                                 Spacer()
                                 Button("Upgrade to Pro") {
-                                    licenseManager.purchaseLifetime()
+                                    showPaywall = true
                                 }
                                 .buttonStyle(.borderedProminent)
                             }
                         }
 
-                        Button("Activate License...") {
-                            showLicenseActivation = true
+                        Button("View Pricing...") {
+                            showPaywall = true
                         }
                     }
                     .padding()
@@ -269,8 +266,8 @@ struct SettingsView: View {
                 .padding()
             }
         }
-        .sheet(isPresented: $showLicenseActivation) {
-            LicenseActivationView()
+        .sheet(isPresented: $showPaywall) {
+            RevenueCatPaywallView()
         }
     }
 
