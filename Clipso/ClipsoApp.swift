@@ -2,7 +2,6 @@ import SwiftUI
 import AppKit
 import CoreData
 import Carbon
-import RevenueCat
 
 // MARK: - Main App Entry Point
 @main
@@ -27,9 +26,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("🚀 Application launching...")
-
-        // Initialize RevenueCat
-        initializeRevenueCat()
 
         // Request necessary permissions
         requestAccessibilityPermissions()
@@ -130,7 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
 
         // License status
-        let licenseManager = RevenueCatManager.shared
+        let licenseManager = LemonSqueezyManager.shared
         if licenseManager.isProUser {
             let licenseItem = NSMenuItem(
                 title: "✓ \(licenseManager.getLicenseStatusText())",
@@ -148,9 +144,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         menu.addItem(NSMenuItem(
-            title: "Restore Purchases...",
-            action: #selector(showRestorePurchases),
-            keyEquivalent: "r"
+            title: "Activate License...",
+            action: #selector(showLicenseActivation),
+            keyEquivalent: "l"
         ))
 
         menu.addItem(NSMenuItem.separator())
@@ -175,42 +171,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func showUpgrade() {
-        showPaywall()
+        let menu = NSMenu()
+
+        menu.addItem(NSMenuItem(
+            title: "Lifetime Pro ($29.99)",
+            action: #selector(purchaseLifetime),
+            keyEquivalent: ""
+        ))
+
+        menu.addItem(NSMenuItem(
+            title: "Annual Pro ($7.99/year)",
+            action: #selector(purchaseAnnual),
+            keyEquivalent: ""
+        ))
+
+        // Show menu at cursor
+        NSMenu.popUpContextMenu(menu, with: NSApp.currentEvent ?? NSEvent(), for: NSApp.mainWindow?.contentView ?? NSView())
     }
 
-    @objc private func showRestorePurchases() {
-        Task {
-            try? await RevenueCatManager.shared.restorePurchases()
-        }
+    @objc private func purchaseLifetime() {
+        LemonSqueezyManager.shared.purchaseLifetime()
     }
 
-    private func showPaywall() {
+    @objc private func purchaseAnnual() {
+        LemonSqueezyManager.shared.purchaseAnnual()
+    }
+
+    @objc private func showLicenseActivation() {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 500, height: 600),
+            contentRect: NSRect(x: 0, y: 0, width: 500, height: 400),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
         )
         window.center()
-        window.title = "Upgrade to Pro"
-        window.contentView = NSHostingController(rootView: RevenueCatPaywallView()).view
+        window.title = "Activate License"
+        window.contentView = NSHostingController(rootView: LicenseActivationView()).view
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 
     @objc private func showSettings() {
         NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-    }
-
-    // MARK: - RevenueCat Setup
-    private func initializeRevenueCat() {
-        // Initialize RevenueCat with your API key
-        // The API key will be configured via Info.plist
-        print("💰 RevenueCat initialized")
-
-        // Trigger initial customer info fetch
-        Task {
-            _ = try? await RevenueCatManager.shared.fetchAvailableProducts()
-        }
     }
 }

@@ -144,27 +144,29 @@ Settings sections:
   - `enableOCR`: Bool (default true)
   - `enableSmartPaste`: Bool (default true)
 
-### License & Subscription Management (NEW - RevenueCat)
+### License & Subscription Management (NEW - Lemon Squeezy)
 
-**RevenueCatManager** (Managers/RevenueCatManager.swift)
-- Modern subscription management using RevenueCat + Apple IAP
+**LemonSqueezyManager** (Managers/LemonSqueezyManager.swift)
+- License and subscription management via Lemon Squeezy
 - License Types: `free`, `lifetime`, `annual`
 - Singleton pattern with @Published properties
-- Automatic customer info syncing from RevenueCat
-- Feature gating via RevenueCat entitlements ("pro")
-- Integration with StoreKit2 for Apple In-App Purchases
+- Keychain-based secure license storage
+- License key validation with Lemon Squeezy API
+- Support for license activation via email + key
 
 **Monetization Model:**
 - Freemium with lifetime purchase ($29.99) and annual subscription ($7.99/year)
 - Free tier: 250 items, 30-day retention, keyword search
 - Pro tier: Unlimited items, unlimited retention, AI features
-- No external payment processor - uses Apple's payment system directly
-- RevenueCat handles backend validation and entitlement management
+- Lemon Squeezy handles payment processing and license key generation
+- No Apple Developer account required
 
 **Key Methods:**
 - `hasProAccess()` - Check if user has Pro features
-- `purchase(productID:)` - Handle purchase via RevenueCat
-- `restorePurchases()` - Restore previous purchases
+- `activateLicense(key:email:)` - Validate and activate license key
+- `purchaseLifetime()` - Open Lemon Squeezy lifetime checkout
+- `purchaseAnnual()` - Open Lemon Squeezy annual subscription checkout
+- `deactivateLicense()` - Deactivate current license
 - `canUseSemanticSearch()`, `canUseContextDetection()` - Feature gating
 - `getMaxItems()`, `getMaxRetentionDays()` - License-based limits
 
@@ -186,14 +188,14 @@ Settings sections:
 Clipso/
 ├── ClipsoApp.swift                     # Main app entry + AppDelegate
 ├── Managers/
-│   ├── RevenueCatManager.swift         # RevenueCat subscription logic (NEW)
+│   ├── LemonSqueezyManager.swift       # Lemon Squeezy license management (NEW)
 │   ├── ClipboardMonitor.swift
 │   ├── SettingsManager.swift
-│   └── LicenseManager.swift            # Deprecated (kept for reference)
+│   └── LicenseManager.swift            # Deprecated (old Paddle integration)
 ├── Views/
 │   ├── ContentView.swift               # Main clipboard UI
-│   ├── SettingsView.swift              # Settings (updated for RevenueCat)
-│   ├── RevenueCatPaywallView.swift     # Purchase paywall (NEW)
+│   ├── SettingsView.swift              # Settings (updated for Lemon Squeezy)
+│   ├── LicenseActivationView.swift     # License key activation UI (NEW)
 │   ├── FlowLayout.swift
 │   └── TagInputSheet.swift
 ├── AI/
@@ -209,8 +211,8 @@ Clipso/
 │   ├── ClipboardItemEntity+CoreDataClass.swift
 │   ├── ClipboardItemEntity+CoreDataProperties.swift
 │   └── ClipboardManager.xcdatamodeld  # Core Data model
-├── Info.plist                          # Permissions + RevenueCat config
-├── REVENUECAT_SETUP_GUIDE.md           # RevenueCat setup instructions (NEW)
+├── Info.plist                          # Permissions
+├── LEMON_SQUEEZY_SETUP_GUIDE.md        # Lemon Squeezy setup instructions (NEW)
 └── README.md
 ```
 
@@ -227,19 +229,19 @@ Defined in Info.plist:
 - SwiftUI target (macOS 13.0+)
 - Core Data model must be included in target
 - Entity classes must be visible to app target
-- RevenueCat SDK must be added via SPM (see REVENUECAT_SETUP_GUIDE.md)
-- Apple Developer Team ID required for In-App Purchases
+- No external SDK required for Lemon Squeezy (uses web checkout)
 
-### RevenueCat Integration
-For complete setup instructions, see `REVENUECAT_SETUP_GUIDE.md`
+### Lemon Squeezy Integration
+For complete setup instructions, see `LEMON_SQUEEZY_SETUP_GUIDE.md`
 
 **Quick Setup:**
-1. Create App Store Connect bundle ID: `com.clipso`
-2. Add IAP products: `com.clipso.lifetime`, `com.clipso.annual`
-3. Create RevenueCat account and import products
-4. Get RevenueCat API key and update `RevenueCatManager.swift`
-5. Add RevenueCat SDK via SPM in Xcode
-6. Configure signing in Xcode (team ID + In-App Purchase capability)
+1. Create Lemon Squeezy store at lemonsqueezy.com
+2. Create lifetime product ($29.99) - get Product ID
+3. Create annual subscription ($7.99/year) - get Product ID
+4. Enable license keys on both products
+5. Update `LemonSqueezyManager.swift` with Store ID and Product IDs
+6. Test license activation flow
+7. Deploy!
 
 ### Common Tasks
 
