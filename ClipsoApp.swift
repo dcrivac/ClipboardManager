@@ -189,6 +189,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func showSettings() {
-        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+        // Try the modern macOS 13+ selector first
+        if NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil) {
+            return
+        }
+
+        // Fall back to the older selector for macOS 12 and earlier
+        if NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil) {
+            return
+        }
+
+        // If neither worked, open a custom settings window
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 600, height: 600),
+            styleMask: [.titled, .closable, .resizable],
+            backing: .buffered,
+            defer: false
+        )
+        window.center()
+        window.title = "Settings"
+        window.contentView = NSHostingController(
+            rootView: SettingsView()
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        ).view
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 }
