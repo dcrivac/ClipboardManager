@@ -205,14 +205,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
 
     @objc private func showSettings() {
-        // Try the modern macOS 13+ selector first
-        if NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil) {
-            return
+        // Try the modern macOS 13+ selector first (with safety check)
+        let modernSelector = Selector(("showSettingsWindow:"))
+        if NSApp.responds(to: modernSelector) {
+            if NSApp.sendAction(modernSelector, to: nil, from: nil) {
+                return
+            }
         }
 
-        // Fall back to the older selector for macOS 12 and earlier
-        if NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil) {
-            return
+        // Fall back to the older selector for macOS 12 and earlier (with safety check)
+        let legacySelector = Selector(("showPreferencesWindow:"))
+        if NSApp.responds(to: legacySelector) {
+            if NSApp.sendAction(legacySelector, to: nil, from: nil) {
+                return
+            }
         }
 
         // If custom window already exists, bring it to front
@@ -223,6 +229,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }
 
         // If neither selector worked, open a custom settings window
+        print("⚠️ Native settings selectors not available, using custom window")
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 600, height: 600),
             styleMask: [.titled, .closable, .resizable],
