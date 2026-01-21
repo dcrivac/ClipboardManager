@@ -176,31 +176,56 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Mobile menu toggle (for future implementation)
+// Mobile menu toggle
 const createMobileMenu = () => {
     const navLinks = document.querySelector('.nav-links');
+    const navContent = document.querySelector('.nav-content');
+
+    if (!navLinks || !navContent) {
+        console.warn('Navigation elements not found');
+        return;
+    }
+
     const menuButton = document.createElement('button');
     menuButton.className = 'mobile-menu-button';
     menuButton.innerHTML = '☰';
+    menuButton.setAttribute('aria-label', 'Toggle mobile menu');
+    menuButton.setAttribute('aria-expanded', 'false');
     menuButton.style.display = 'none';
     menuButton.style.background = 'none';
     menuButton.style.border = 'none';
     menuButton.style.fontSize = '1.5rem';
     menuButton.style.cursor = 'pointer';
     menuButton.style.color = 'var(--text-primary)';
+    menuButton.style.padding = '0.5rem';
 
-    // Check if screen is mobile
+    let menuOpen = false;
+
+    // Check if screen is mobile and update UI
     const checkMobile = () => {
         if (window.innerWidth <= 768) {
             menuButton.style.display = 'block';
+            if (!menuOpen) {
+                navLinks.classList.add('mobile-hidden');
+            }
         } else {
             menuButton.style.display = 'none';
-            navLinks.style.display = 'flex';
+            navLinks.classList.remove('mobile-hidden', 'mobile-open');
+            navLinks.removeAttribute('style');
+            menuOpen = false;
+            menuButton.setAttribute('aria-expanded', 'false');
         }
     };
 
+    // Toggle mobile menu
     menuButton.addEventListener('click', () => {
-        if (navLinks.style.display === 'none' || navLinks.style.display === '') {
+        menuOpen = !menuOpen;
+        menuButton.setAttribute('aria-expanded', menuOpen.toString());
+        menuButton.innerHTML = menuOpen ? '✕' : '☰';
+
+        if (menuOpen) {
+            navLinks.classList.remove('mobile-hidden');
+            navLinks.classList.add('mobile-open');
             navLinks.style.display = 'flex';
             navLinks.style.flexDirection = 'column';
             navLinks.style.position = 'absolute';
@@ -210,20 +235,37 @@ const createMobileMenu = () => {
             navLinks.style.background = 'white';
             navLinks.style.padding = '1rem';
             navLinks.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            navLinks.style.zIndex = '1000';
         } else {
-            navLinks.style.display = 'none';
+            navLinks.classList.add('mobile-hidden');
+            navLinks.classList.remove('mobile-open');
+            navLinks.removeAttribute('style');
         }
     });
 
-    document.querySelector('.nav-content').insertBefore(menuButton, navLinks);
+    // Close menu when clicking on a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (menuOpen && window.innerWidth <= 768) {
+                menuOpen = false;
+                menuButton.innerHTML = '☰';
+                menuButton.setAttribute('aria-expanded', 'false');
+                navLinks.classList.add('mobile-hidden');
+                navLinks.classList.remove('mobile-open');
+                navLinks.removeAttribute('style');
+            }
+        });
+    });
+
+    navContent.insertBefore(menuButton, navLinks);
     window.addEventListener('resize', checkMobile);
     checkMobile();
 };
 
-// Initialize mobile menu
-if (window.innerWidth <= 768) {
+// Initialize mobile menu on all devices (responsive behavior handled inside)
+document.addEventListener('DOMContentLoaded', () => {
     createMobileMenu();
-}
+});
 
 // Add particle effect to hero section
 const createParticles = () => {
