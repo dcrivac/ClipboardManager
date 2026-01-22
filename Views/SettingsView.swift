@@ -6,7 +6,7 @@ import CoreData
 struct SettingsView: View {
     @ObservedObject private var settings = SettingsManager.shared
     @State private var newExcludedApp = ""
-    @StateObject private var licenseManager = LicenseManager.shared
+    @ObservedObject private var licenseManager = LicenseManager.shared
     @State private var showLicenseActivation = false
 
     var body: some View {
