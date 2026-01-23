@@ -126,10 +126,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
 
         // License status
-        let licenseManager = LemonSqueezyManager.shared
+        let licenseManager = LicenseManager.shared
         if licenseManager.isProUser {
             let licenseItem = NSMenuItem(
-                title: "✓ \(licenseManager.getLicenseStatusText())",
+                title: "✓ Pro License Active",
                 action: nil,
                 keyEquivalent: ""
             )
@@ -171,30 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func showUpgrade() {
-        let menu = NSMenu()
-
-        menu.addItem(NSMenuItem(
-            title: "Lifetime Pro ($29.99)",
-            action: #selector(purchaseLifetime),
-            keyEquivalent: ""
-        ))
-
-        menu.addItem(NSMenuItem(
-            title: "Annual Pro ($7.99/year)",
-            action: #selector(purchaseAnnual),
-            keyEquivalent: ""
-        ))
-
-        // Show menu at cursor
-        NSMenu.popUpContextMenu(menu, with: NSApp.currentEvent ?? NSEvent(), for: NSApp.mainWindow?.contentView ?? NSView())
-    }
-
-    @objc private func purchaseLifetime() {
-        LemonSqueezyManager.shared.purchaseLifetime()
-    }
-
-    @objc private func purchaseAnnual() {
-        LemonSqueezyManager.shared.purchaseAnnual()
+        LicenseManager.shared.purchaseLifetime()
     }
 
     @objc private func showLicenseActivation() {

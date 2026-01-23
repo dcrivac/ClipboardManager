@@ -6,7 +6,7 @@ import CoreData
 struct SettingsView: View {
     @ObservedObject private var settings = SettingsManager.shared
     @State private var newExcludedApp = ""
-    @StateObject private var licenseManager = LemonSqueezyManager.shared
+    @StateObject private var licenseManager = LicenseManager.shared
     @State private var showLicenseActivation = false
 
     var body: some View {
@@ -32,7 +32,7 @@ struct SettingsView: View {
                         HStack {
                             if licenseManager.isProUser {
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("✓ \(licenseManager.getLicenseStatusText())")
+                                    Text("✓ Pro License Active")
                                         .font(.headline)
                                         .foregroundColor(.green)
                                     if let email = licenseManager.licenseEmail {
@@ -40,6 +40,9 @@ struct SettingsView: View {
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     }
+                                    Text(licenseManager.licenseType.rawValue.capitalized)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                 }
                                 Spacer()
                                 Button("Deactivate") {

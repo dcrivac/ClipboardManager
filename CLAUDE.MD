@@ -144,28 +144,27 @@ Settings sections:
   - `enableOCR`: Bool (default true)
   - `enableSmartPaste`: Bool (default true)
 
-### License & Subscription Management (NEW - Lemon Squeezy)
+### License Management
 
-**LemonSqueezyManager** (Managers/LemonSqueezyManager.swift)
-- License and subscription management via Lemon Squeezy
-- License Types: `free`, `lifetime`, `annual`
+**LicenseManager** (Managers/LicenseManager.swift)
+- License validation and Pro feature management
+- License Types: `free`, `lifetime`, `annual`, `monthly`
 - Singleton pattern with @Published properties
 - Keychain-based secure license storage
-- License key validation with Lemon Squeezy API
+- Paddle API integration for license verification
 - Support for license activation via email + key
 
 **Monetization Model:**
 - Freemium with lifetime purchase ($29.99) and annual subscription ($7.99/year)
 - Free tier: 250 items, 30-day retention, keyword search
 - Pro tier: Unlimited items, unlimited retention, AI features
-- Lemon Squeezy handles payment processing and license key generation
-- No Apple Developer account required
+- Paddle handles payment processing and license key generation
 
 **Key Methods:**
 - `hasProAccess()` - Check if user has Pro features
-- `activateLicense(key:email:)` - Validate and activate license key
-- `purchaseLifetime()` - Open Lemon Squeezy lifetime checkout
-- `purchaseAnnual()` - Open Lemon Squeezy annual subscription checkout
+- `activateLicense(key:email:)` - Validate and activate license key with Paddle
+- `purchaseLifetime()` - Open Paddle lifetime checkout
+- `purchaseAnnual()` - Open Paddle annual subscription checkout
 - `deactivateLicense()` - Deactivate current license
 - `canUseSemanticSearch()`, `canUseContextDetection()` - Feature gating
 - `getMaxItems()`, `getMaxRetentionDays()` - License-based limits
@@ -188,14 +187,12 @@ Settings sections:
 Clipso/
 ├── ClipsoApp.swift                     # Main app entry + AppDelegate
 ├── Managers/
-│   ├── LemonSqueezyManager.swift       # Lemon Squeezy license management (NEW)
+│   ├── LicenseManager.swift            # Paddle license management
 │   ├── ClipboardMonitor.swift
-│   ├── SettingsManager.swift
-│   └── LicenseManager.swift            # Deprecated (old Paddle integration)
+│   └── SettingsManager.swift
 ├── Views/
 │   ├── ContentView.swift               # Main clipboard UI
-│   ├── SettingsView.swift              # Settings (updated for Lemon Squeezy)
-│   ├── LicenseActivationView.swift     # License key activation UI (NEW)
+│   ├── SettingsView.swift              # Settings + License management
 │   ├── FlowLayout.swift
 │   └── TagInputSheet.swift
 ├── AI/
@@ -212,7 +209,6 @@ Clipso/
 │   ├── ClipboardItemEntity+CoreDataProperties.swift
 │   └── ClipboardManager.xcdatamodeld  # Core Data model
 ├── Info.plist                          # Permissions
-├── LEMON_SQUEEZY_SETUP_GUIDE.md        # Lemon Squeezy setup instructions (NEW)
 └── README.md
 ```
 
@@ -229,19 +225,14 @@ Defined in Info.plist:
 - SwiftUI target (macOS 13.0+)
 - Core Data model must be included in target
 - Entity classes must be visible to app target
-- No external SDK required for Lemon Squeezy (uses web checkout)
 
-### Lemon Squeezy Integration
-For complete setup instructions, see `LEMON_SQUEEZY_SETUP_GUIDE.md`
-
-**Quick Setup:**
-1. Create Lemon Squeezy store at lemonsqueezy.com
-2. Create lifetime product ($29.99) - get Product ID
-3. Create annual subscription ($7.99/year) - get Product ID
-4. Enable license keys on both products
-5. Update `LemonSqueezyManager.swift` with Store ID and Product IDs
-6. Test license activation flow
-7. Deploy!
+### Paddle Integration
+For license management and payments via Paddle:
+- Users purchase through Paddle checkout links
+- License keys emailed by Paddle after purchase
+- Users activate in app via email + license key
+- LicenseManager validates keys with Paddle API
+- Features gated based on license status
 
 ### Common Tasks
 
