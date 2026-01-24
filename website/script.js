@@ -14,11 +14,11 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Paddle Configuration
-const PADDLE_VENDOR_ID = 'YOUR_VENDOR_ID'; // Replace with your Paddle Vendor ID
+// Paddle Configuration - SANDBOX (for testing)
+const PADDLE_VENDOR_ID = 'test_859aa26dd9d5c623ccccf54e0c7'; // Paddle Sandbox client-side token
 const PADDLE_ENVIRONMENT = 'sandbox'; // Use 'sandbox' for testing, 'production' for live
-const LIFETIME_PRICE_ID = 'pri_LIFETIME_PRICE_ID'; // Replace with Lifetime price ID
-const ANNUAL_PRICE_ID = 'pri_ANNUAL_PRICE_ID'; // Replace with Annual price ID
+const LIFETIME_PRICE_ID = 'pri_01kfr145r1eh8f7m8w0nfkvz74'; // Yearly/Lifetime price ID (Sandbox)
+const ANNUAL_PRICE_ID = 'pri_01kfr12rgvdnhpr52zspmqvnk1'; // Annual price ID (Sandbox)
 
 // Initialize Paddle
 function initializePaddle() {

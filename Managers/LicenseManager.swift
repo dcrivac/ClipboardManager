@@ -27,11 +27,11 @@ class LicenseManager: ObservableObject {
     }
     #endif
 
-    // Paddle Configuration
-    private let vendorID = "YOUR_PADDLE_VENDOR_ID" // Replace with your Vendor ID from Paddle Dashboard
-    private let lifetimePriceID = "pri_LIFETIME_PRICE_ID" // Price ID for Lifetime from Paddle
-    private let annualPriceID = "pri_ANNUAL_PRICE_ID" // Price ID for Annual subscription from Paddle
-    private let apiKey = "YOUR_PADDLE_API_KEY" // API Key from Paddle Developer Tools
+    // Paddle Configuration - SANDBOX (for testing)
+    private let vendorID = "test_859aa26dd9d5c623ccccf54e0c7" // Paddle Sandbox client-side token
+    private let lifetimePriceID = "pri_01kfr145r1eh8f7m8w0nfkvz74" // Yearly/Lifetime Price ID (Sandbox)
+    private let annualPriceID = "pri_01kfr12rgvdnhpr52zspmqvnk1" // Annual Price ID (Sandbox)
+    private let apiKey = "YOUR_PADDLE_API_KEY" // API Key from Paddle Developer Tools (get from Authentication)
     private let useSandbox = true // Set to false for production
 
     // Keychain keys
