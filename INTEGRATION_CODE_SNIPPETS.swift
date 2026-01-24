@@ -88,7 +88,7 @@ private func setupMenuBarMenu() {
 // ============================================================
 // SNIPPET 3: Add to ContentView struct (after existing @State variables)
 // ============================================================
-@StateObject private var licenseManager = LicenseManager.shared
+@ObservedObject private var licenseManager = LicenseManager.shared
 @State private var showUpgradePrompt = false
 @State private var upgradeFeature = "Pro Features"
 
@@ -180,7 +180,7 @@ let maxItems = settings.effectiveMaxItems  // instead of settings.maxItems
 // ============================================================
 // SNIPPET 10: Add to SettingsView struct (after existing @StateObject)
 // ============================================================
-@StateObject private var licenseManager = LicenseManager.shared
+@ObservedObject private var licenseManager = LicenseManager.shared
 @State private var showLicenseActivation = false
 
 

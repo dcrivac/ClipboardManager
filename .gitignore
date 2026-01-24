@@ -30,3 +30,4 @@ project.xcworkspace/
 secrets/
 credentials.json
 config.local.swift
+PADDLE_CREDENTIALS.md

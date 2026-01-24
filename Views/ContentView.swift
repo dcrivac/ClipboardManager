@@ -23,7 +23,7 @@ struct ContentView: View {
     private let contextDetector = ContextDetector.shared
 
     // License management
-    @StateObject private var licenseManager = LicenseManager.shared
+    @ObservedObject private var licenseManager = LicenseManager.shared
     @State private var showUpgradePrompt = false
     @State private var upgradeFeature = "Pro Features"
 
