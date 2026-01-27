@@ -8,6 +8,27 @@
 import Foundation
 import Security
 
+// MARK: - Simple Paddle Configuration
+// No backend needed - just paste your Paddle payment links here
+
+struct PaddleConfig {
+    // Sandbox payment links (get these from Paddle Dashboard)
+    static let sandboxLifetimeURL = "PASTE_YOUR_SANDBOX_LIFETIME_PAYMENT_LINK_HERE"
+    static let sandboxAnnualURL = "PASTE_YOUR_SANDBOX_ANNUAL_PAYMENT_LINK_HERE"
+
+    // Production payment links
+    static let productionLifetimeURL = "PASTE_YOUR_PRODUCTION_LIFETIME_PAYMENT_LINK_HERE"
+    static let productionAnnualURL = "PASTE_YOUR_PRODUCTION_ANNUAL_PAYMENT_LINK_HERE"
+
+    #if DEBUG
+    static var lifetimeCheckoutURL: String { sandboxLifetimeURL }
+    static var annualCheckoutURL: String { sandboxAnnualURL }
+    #else
+    static var lifetimeCheckoutURL: String { productionLifetimeURL }
+    static var annualCheckoutURL: String { productionAnnualURL }
+    #endif
+}
+
 // MARK: - License Manager
 class LicenseManager: ObservableObject {
     static let shared = LicenseManager()
@@ -26,9 +47,6 @@ class LicenseManager: ObservableObject {
         }
     }
     #endif
-
-    // Paddle Configuration - Loaded from PaddleConfig
-    private let paddleConfig: PaddleEnvironment
 
     // License server URL
     private let licenseServerURL = "https://api.clipso.app" // Update with your deployed server URL
@@ -59,8 +77,6 @@ class LicenseManager: ObservableObject {
     }
 
     private init() {
-        // Load Paddle configuration from secure source
-        self.paddleConfig = PaddleConfig.loadConfig()
         loadLicenseFromKeychain()
 
         // Start periodic revalidation if license is active
@@ -142,15 +158,15 @@ class LicenseManager: ObservableObject {
 
     /// Open Paddle checkout for purchase
     func purchaseLifetime() {
-        let checkoutURL = "\(paddleConfig.checkoutBaseURL)/checkout/custom/\(paddleConfig.lifetimePriceID)"
-        if let url = URL(string: checkoutURL) {
+        // Simply open the Paddle payment link (no API calls needed!)
+        if let url = URL(string: PaddleConfig.lifetimeCheckoutURL) {
             NSWorkspace.shared.open(url)
         }
     }
 
     func purchaseAnnual() {
-        let checkoutURL = "\(paddleConfig.checkoutBaseURL)/checkout/custom/\(paddleConfig.annualPriceID)"
-        if let url = URL(string: checkoutURL) {
+        // Simply open the Paddle payment link (no API calls needed!)
+        if let url = URL(string: PaddleConfig.annualCheckoutURL) {
             NSWorkspace.shared.open(url)
         }
     }
@@ -314,14 +330,7 @@ class LicenseManager: ObservableObject {
     }
 
     private func determineLicenseTypeFromPriceID(priceID: String) -> LicenseType {
-        // Match against configured price IDs
-        if priceID == paddleConfig.lifetimePriceID {
-            return .lifetime
-        } else if priceID == paddleConfig.annualPriceID {
-            return .annual
-        }
-
-        // Fallback to checking naming patterns
+        // Check naming patterns in price ID
         let idLower = priceID.lowercased()
         if idLower.contains("lifetime") {
             return .lifetime
