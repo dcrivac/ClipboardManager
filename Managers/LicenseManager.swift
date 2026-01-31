@@ -13,11 +13,11 @@ import Security
 // Deploy checkout.html to your website, then it will open Paddle.js checkout
 
 struct PaddleConfig {
-    // Your website checkout page URL (GitHub Pages)
-    static let checkoutPageURL = "https://dcrivac.github.io/Clipso/checkout.html"
+    // Your website checkout page URL
+    static let checkoutPageURL = "https://clipso.app/checkout.html"
 
     // Production Paddle price IDs from Catalog → Products
-    static let lifetimePriceID = "pri_01kfqf26bqncwbr7nvrg445esy"  // Lifetime: $29.99
+    static let lifetimePriceID = "pri_01kfqf26bqncwbr7nvrg445esy"  // Lifetime: $29.99 one-time
     static let annualPriceID = "pri_01kfqf40kc2jn9cgx9a6naenk7"    // Annual: $7.99/year
 
     // Generate checkout URLs with price_id parameter
@@ -521,6 +521,7 @@ import SwiftUI
 
 struct LicenseActivationView: View {
     @StateObject private var licenseManager = LicenseManager.shared
+    @Environment(\.dismiss) var dismiss
     @State private var licenseKey = ""
     @State private var email = ""
     @State private var isActivating = false
@@ -529,6 +530,16 @@ struct LicenseActivationView: View {
 
     var body: some View {
         VStack(spacing: 20) {
+            HStack {
+                Spacer()
+                Button(action: { dismiss() }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.secondary)
+                }
+                .buttonStyle(.plain)
+            }
+
             Text("Activate Pro License")
                 .font(.title)
                 .fontWeight(.bold)
@@ -587,7 +598,7 @@ struct LicenseActivationView: View {
         .padding(30)
         .frame(width: 500)
         .alert("License Activated!", isPresented: $showSuccess) {
-            Button("OK") { }
+            Button("OK") { dismiss() }
         } message: {
             Text("Your Pro features have been activated!")
         }

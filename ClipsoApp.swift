@@ -38,8 +38,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
         if let button = statusItem?.button {
-            button.image = NSImage(systemSymbolName: "doc.on.clipboard", accessibilityDescription: "Clipboard Manager")
-            button.action = #selector(togglePopover)
+            button.image = NSImage(systemSymbolName: "doc.on.clipboard", accessibilityDescription: "Clipso")
+            button.action = #selector(handleStatusItemClick)
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.target = self
         }
 
@@ -114,6 +115,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }, 1, &eventTypes, Unmanaged.passUnretained(self).toOpaque(), &eventHandler)
     }
 
+    @objc func handleStatusItemClick() {
+        guard let event = NSApp.currentEvent else { return }
+
+        if event.type == .rightMouseUp {
+            // Right-click: show menu
+            showStatusMenu()
+        } else {
+            // Left-click: toggle popover
+            togglePopover()
+        }
+    }
+
     @objc func togglePopover() {
         if let button = statusItem?.button {
             if popover?.isShown == true {
@@ -125,15 +138,37 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }
     }
 
+    private func showStatusMenu() {
+        guard let button = statusItem?.button else { return }
+
+        let menu = buildStatusMenu()
+        statusItem?.menu = menu
+        button.performClick(nil)
+        statusItem?.menu = nil  // Remove menu so left-click works again
+    }
+
     // MARK: - License Menu Setup
     private func setupMenuBarMenu() {
+        // Menu is built dynamically when needed
+    }
+
+    private func buildStatusMenu() -> NSMenu {
         let menu = NSMenu()
+
+        // Show Clipso (same as left-click)
+        menu.addItem(NSMenuItem(
+            title: "Show Clipso",
+            action: #selector(togglePopover),
+            keyEquivalent: ""
+        ))
+
+        menu.addItem(NSMenuItem.separator())
 
         // License status
         let licenseManager = LicenseManager.shared
         if licenseManager.isProUser {
             let licenseItem = NSMenuItem(
-                title: "✓ Pro License Active",
+                title: "Pro License Active",
                 action: nil,
                 keyEquivalent: ""
             )
@@ -145,13 +180,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
                 action: #selector(showUpgrade),
                 keyEquivalent: "u"
             ))
-        }
 
-        menu.addItem(NSMenuItem(
-            title: "Activate License...",
-            action: #selector(showLicenseActivation),
-            keyEquivalent: "l"
-        ))
+            menu.addItem(NSMenuItem(
+                title: "Activate License...",
+                action: #selector(showLicenseActivation),
+                keyEquivalent: "l"
+            ))
+        }
 
         menu.addItem(NSMenuItem.separator())
 
@@ -171,7 +206,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             keyEquivalent: "q"
         ))
 
-        statusItem?.menu = menu
+        return menu
     }
 
     @objc private func showUpgrade() {
