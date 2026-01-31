@@ -155,11 +155,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private func buildStatusMenu() -> NSMenu {
         let menu = NSMenu()
 
+        // Show Clipso (same as left-click)
+        menu.addItem(NSMenuItem(
+            title: "Show Clipso",
+            action: #selector(togglePopover),
+            keyEquivalent: ""
+        ))
+
+        menu.addItem(NSMenuItem.separator())
+
         // License status
         let licenseManager = LicenseManager.shared
         if licenseManager.isProUser {
             let licenseItem = NSMenuItem(
-                title: "✓ Pro License Active",
+                title: "Pro License Active",
                 action: nil,
                 keyEquivalent: ""
             )
@@ -171,13 +180,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
                 action: #selector(showUpgrade),
                 keyEquivalent: "u"
             ))
-        }
 
-        menu.addItem(NSMenuItem(
-            title: "Activate License...",
-            action: #selector(showLicenseActivation),
-            keyEquivalent: "l"
-        ))
+            menu.addItem(NSMenuItem(
+                title: "Activate License...",
+                action: #selector(showLicenseActivation),
+                keyEquivalent: "l"
+            ))
+        }
 
         menu.addItem(NSMenuItem.separator())
 
