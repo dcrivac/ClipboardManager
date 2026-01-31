@@ -1,4 +1,4 @@
-name: Tests
+name: Build
 
 on:
   push:
@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Main test job using matrix strategy for efficiency
+  # Main build job using matrix strategy for efficiency
   test:
-    name: Test on ${{ matrix.os }} - ${{ matrix.configuration }}
+    name: Build on ${{ matrix.os }} - ${{ matrix.configuration }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -53,10 +53,10 @@ jobs:
             ${{ runner.os }}-deriveddata-${{ matrix.configuration }}-
             ${{ runner.os }}-deriveddata-
 
-      # Single build step that validates compilation
-      - name: Build for Testing
+      # Build the app (no test target exists in this project)
+      - name: Build App
         run: |
-          xcodebuild build-for-testing \
+          xcodebuild build \
             -project Clipso.xcodeproj \
             -scheme Clipso \
             -configuration ${{ matrix.configuration }} \
@@ -66,21 +66,6 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             | tee build.log
-
-      # Run unit tests (Debug only for speed)
-      - name: Run Unit Tests
-        if: matrix.configuration == 'Debug'
-        run: |
-          xcodebuild test-without-building \
-            -project Clipso.xcodeproj \
-            -scheme Clipso \
-            -configuration Debug \
-            -destination 'platform=macOS' \
-            -derivedDataPath ./DerivedData \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
-        continue-on-error: false
 
       # Verify build artifacts exist
       - name: Verify Build Artifacts
@@ -104,15 +89,15 @@ jobs:
             echo "✅ No warnings found"
           fi
 
-      # Upload test results (Debug + latest macOS only)
-      - name: Upload Test Results
+      # Upload build logs (Debug + latest macOS only)
+      - name: Upload Build Logs
         if: always() && matrix.configuration == 'Debug' && matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ matrix.os }}-${{ matrix.configuration }}
+          name: build-logs-${{ matrix.os }}-${{ matrix.configuration }}
           path: |
             ~/Library/Logs/DiagnosticReports/
-            DerivedData/Logs/Test/
+            build.log
           retention-days: 7
 
       # Upload Release build (Release + latest macOS only)
@@ -165,22 +150,22 @@ jobs:
           fi
 
   # Status check job - required for branch protection
-  test-status:
-    name: All Tests Passed
+  build-status:
+    name: All Builds Passed
     if: always()
     needs: [test, code-quality]
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check test results
+      - name: Check build results
         run: |
           if [ "${{ needs.test.result }}" != "success" ]; then
-            echo "❌ Tests failed"
+            echo "❌ Build failed"
             exit 1
           fi
           if [ "${{ needs.code-quality.result }}" != "success" ]; then
             echo "⚠️  Code quality checks failed"
             # Don't fail on code quality issues, just warn
           fi
-          echo "✅ All tests passed"
+          echo "✅ All builds passed"
 
