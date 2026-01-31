@@ -521,6 +521,7 @@ import SwiftUI
 
 struct LicenseActivationView: View {
     @StateObject private var licenseManager = LicenseManager.shared
+    @Environment(\.dismiss) var dismiss
     @State private var licenseKey = ""
     @State private var email = ""
     @State private var isActivating = false
@@ -529,6 +530,16 @@ struct LicenseActivationView: View {
 
     var body: some View {
         VStack(spacing: 20) {
+            HStack {
+                Spacer()
+                Button(action: { dismiss() }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.secondary)
+                }
+                .buttonStyle(.plain)
+            }
+
             Text("Activate Pro License")
                 .font(.title)
                 .fontWeight(.bold)
@@ -587,7 +598,7 @@ struct LicenseActivationView: View {
         .padding(30)
         .frame(width: 500)
         .alert("License Activated!", isPresented: $showSuccess) {
-            Button("OK") { }
+            Button("OK") { dismiss() }
         } message: {
             Text("Your Pro features have been activated!")
         }
